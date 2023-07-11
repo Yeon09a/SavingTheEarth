@@ -11,6 +11,11 @@ public class UIManager : MonoBehaviour
     public Toggle itemTgl; // 소지품 토글
     public GameObject itemPanel; // 소지품 판넬
     public GameObject pItemPanel; // 중요 물품 판넬
+    public GameObject settingPanel; // 설정 창
+    public Button settingBtn; // 설정 창 버튼
+    public Button setOkayBtn; // 설정 창 확인 버튼
+    public GameObject fullMap; // 전체 맵 창
+    public Button mapExitBtn; // 전체 맵 닫기 버튼
 
     private bool isInvenOpen = false; // 인벤토리 상태
 
@@ -21,6 +26,11 @@ public class UIManager : MonoBehaviour
         // UI 리스너 연결
         inventoryBtn.onClick.AddListener(SetInventory);
         itemTgl.onValueChanged.AddListener(OnItemPanel);
+        settingBtn.onClick.AddListener(OpenSetting);
+        setOkayBtn.onClick.AddListener(CloseSetting);
+        mapExitBtn.onClick.AddListener(CloseMap);
+
+        // 위치 설정
         inventoryBtn.GetComponent<RectTransform>().anchoredPosition = new Vector2(532, 40);
         itemList.GetComponent<RectTransform>().anchoredPosition = new Vector2(0, 40);
     }
@@ -51,6 +61,23 @@ public class UIManager : MonoBehaviour
             itemPanel.SetActive(false);
             pItemPanel.SetActive(true);
         }
+    }
+
+    private void OpenSetting() // 설정 창 열기
+    {
+        settingPanel.SetActive(true);
+        // 설정 변수 세팅 추가
+    }
+
+    private void CloseSetting() // 설정 창 닫기
+    {
+        settingPanel.SetActive(false);
+        // 설정 변수 세팅 추가
+    }
+
+    private void CloseMap()
+    {
+        fullMap.SetActive(false);
     }
 
 }
