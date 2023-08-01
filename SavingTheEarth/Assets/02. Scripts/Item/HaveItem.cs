@@ -10,7 +10,7 @@ public class HaveItem : ScriptableObject
 }
 
 [System.Serializable]
-public class HaveItemInfo
+public class HaveItemInfo : ScriptableObject
 {
     public int type; // 아이템 위치
     public int count; // 아이템 개수
