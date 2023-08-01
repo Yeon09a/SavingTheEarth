@@ -9,7 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ba13a1b808698454b92d30c2d2c7a93b, type: 3}
-  m_Name: ItemDic
+  m_Script: {fileID: 11500000, guid: f144b548a665aab40a4d8efa13786daf, type: 3}
+  m_Name: BossMonster
   m_EditorClassIdentifier: 
-  items: []
+  monsterId: 0
+  hp: 0
+  damage: []

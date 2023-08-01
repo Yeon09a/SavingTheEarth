@@ -4,6 +4,5 @@ using UnityEngine;
 
 public class ItemIcon : MonoBehaviour
 {
-    public int id;
-    public int type;
+    public Item itemInfo;
 }
