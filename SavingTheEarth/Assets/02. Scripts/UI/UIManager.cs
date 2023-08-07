@@ -31,8 +31,8 @@ public class UIManager : MonoBehaviour
         mapExitBtn.onClick.AddListener(CloseMap);
 
         // 위치 설정
-        inventoryBtn.GetComponent<RectTransform>().anchoredPosition = new Vector2(532, 40);
-        itemList.GetComponent<RectTransform>().anchoredPosition = new Vector2(0, 40);
+        //inventoryBtn.GetComponent<RectTransform>().anchoredPosition = new Vector2(532, 40);
+        //itemList.GetComponent<RectTransform>().anchoredPosition = new Vector2(0, 40);
     }
 
     private void SetInventory() // 인벤토리 열기
