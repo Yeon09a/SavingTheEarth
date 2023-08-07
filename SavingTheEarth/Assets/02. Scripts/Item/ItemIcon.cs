@@ -19,6 +19,7 @@ public class ItemIcon : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     {
         canvasTr = GameObject.FindWithTag("Canvas").transform;
         itemInfoTr = canvasTr.GetChild(canvasTr.childCount - 1).transform;
+        GetComponent<Image>().sprite = itemInfo.image;
     }
 
     private void Update()
@@ -29,7 +30,7 @@ public class ItemIcon : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
             if(curTime < 0) // 2초 지나면
             {
                 // 판넬 활성화
-                itemInfoTr.GetChild(1).GetComponent<RawImage>().texture = itemInfo.image;
+                itemInfoTr.GetChild(1).GetComponent<Image>().sprite = itemInfo.image;
                 itemInfoTr.GetChild(2).GetComponent<TextMeshProUGUI>().text = itemInfo.itName;
                 itemInfoTr.GetChild(3).GetComponent<TextMeshProUGUI>().text = itemInfo.info;
                 itemInfoTr.GetComponent<RectTransform>().position = transform.GetChild(0).position + new Vector3(-250, 100, 0);
