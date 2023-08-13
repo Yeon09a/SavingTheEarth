@@ -9,8 +9,7 @@ public class HaveItem : ScriptableObject
     public Dictionary<int, HaveItemInfo> haveItems; // 현재 가지고 있는 아이템 딕셔너리<아이템 id, 아이템 정보>
 }
 
-[System.Serializable]
-public class HaveItemInfo
+public class HaveItemInfo : ScriptableObject
 {
     public int type; // 아이템 위치
     public int count; // 아이템 개수

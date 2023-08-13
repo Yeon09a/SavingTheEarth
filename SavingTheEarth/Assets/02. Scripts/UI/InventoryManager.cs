@@ -17,7 +17,7 @@ public class InventoryManager : MonoBehaviour
     public GameObject itemIcon; // 아이템 아이콘 프리팹
 
     public HaveItem haveItems; // 가지고 있는 아이템 에셋
-    public Item items; // 아이템 종류 에셋
+    public ItemDic items; // 아이템 종류 에셋
 
     private void Awake()
     {
@@ -128,10 +128,8 @@ public class InventoryManager : MonoBehaviour
     public void CreateItemIcon(GameObject[] slots, bool[] checkSlots, int id, int index, int type) // 아이템 아이콘 생성
     {
         GameObject icon = Instantiate(itemIcon, slots[index].transform.position, Quaternion.identity);
-        // icon 속성 설정
-        icon.GetComponent<RawImage>().texture = items.items[id].image;
-        icon.GetComponent<ItemIcon>().id = id;
-        icon.GetComponent<ItemIcon>().type = type;
+        // icon 속성 설정(itemicon으로 이동)
+        icon.GetComponent<ItemIcon>().itemInfo = items.items[id];
         icon.transform.SetParent(slots[index].transform.GetChild(0));
         checkSlots[index] = true ;
         haveItems.haveItems.Add(id, new HaveItemInfo(type, 1, index));
