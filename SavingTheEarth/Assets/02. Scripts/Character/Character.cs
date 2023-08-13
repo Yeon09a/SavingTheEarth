@@ -10,6 +10,7 @@ public abstract class Character : MonoBehaviour
     private float speed;
     protected Vector2 direction;
     private Animator animator;
+
     void Start()
     {
         animator = GetComponent<Animator>();
