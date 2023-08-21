@@ -7,7 +7,8 @@ public abstract class Character : MonoBehaviour
 {
     // 인스펙터창에 보여짐
     [SerializeField]
-    private float speed;
+    protected float hp;
+    public float speed;
     protected Vector2 direction;
     private Animator animator;
 
@@ -46,5 +47,24 @@ public abstract class Character : MonoBehaviour
 
         animator.SetFloat("x", direction.x);
         animator.SetFloat("y", direction.y);
+    }
+
+    // 스피드 setter
+    public void SetSpeed(float sp)
+    {
+        speed = sp;
+    }
+
+    // 스피드 getter
+    public float GetSpeed()
+    {
+        return speed;
+    }
+
+    // 애니메이터 setter
+    public void SetAnimator(bool b)
+    {
+        animator.enabled = b;
+        animator.Play("idle_Up", 0);
     }
 }
