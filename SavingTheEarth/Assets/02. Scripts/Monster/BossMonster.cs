@@ -2,38 +2,44 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BossMonster : MonoBehaviour
+public class BossMonster : Character
 {
-    public GameObject beam;
-    private GameObject[] beams;
-    private int beamCount = 0;
+    [Header("BossInfo")]
+    public GameObject beam; // 빔 프리팹
+    public GameObject[] etcMons; // 기타 몬스터
+    public GameObject spawnCircle; // 스폰 진
+
+    // 임시
     private Vector2[] boundarysX = { new Vector2(-9.0f, -4.5f), new Vector2(-4.5f, 0.0f), new Vector2(0.0f, 4.5f), new Vector2(4.5f, 9.0f)};
     private Vector2[] boundarysY = { new Vector2(5.0f, 0.0f), new Vector2(-5.0f, 0.0f)};
 
     public static bool isAttaking; // 공격 중인지 확인
 
-    public delegate void beamDel();
-    public static event beamDel startBeamAnimation;
+    public delegate void bossDel(); // 보스 델리게이트
+    public static event bossDel startBeamAnimation; // 빔 애니메이션 이벤트
+    private event bossDel spawnEtcMons; // 기타 몬스터 스폰 이벤트
 
     // 공격 관련 변수
     private int maxBeam = 8; // 빔 개수(임시)
     private int attackNum; // 공격 번호(1, 2, 3)
+    private int prevAttactNum; // 이전 공격 번호
     private int attackCount = 0; // 공격 횟수 
-    private bool isEyeOpen = false; // 눈
-    //private Player player;
+    private float paralysisTime = 10.0f; // 마비 시간
+    private bool isHpHalf = false; // 몬스터 hp가 반 이하인지 체크
+    private bool isShield = false; // 실드 상태인지 체크
+    private int maxEtcMons = 8; // 기타 몬스터 최대 수(임시)
+
+    private Player player;
 
     // 몬스터 정보
     public Monster bossMonster;
-    //private float mHP; // character 상속받아 사용.
 
     // Start is called before the first frame update
     void Start()
     {
-        //player = GameObject.FindWithTag("Player").GetComponent<Player>();
+        hp = bossMonster.hp;
+        player = GameObject.FindWithTag("Player").GetComponent<Player>();
 
-        beams = new GameObject[maxBeam]; // 임시
-
-        //ShootBeam();
         StartCoroutine(Attack());
     }
 
@@ -47,23 +53,38 @@ public class BossMonster : MonoBehaviour
     {
         while (true)
         {
-            attackNum = Random.Range(1, 3);
-            if (attackNum == 1)
+            attackNum = isHpHalf ? Random.Range(1, 4) : Random.Range(1, 3); // 체력이 반 이하일 경우 1~3공격, 그렇지 않을 경우 1~2 공격
+            if (attackNum == 1 || prevAttactNum == 2) // 빔 공격
             {
+                prevAttactNum = 1;
                 ShootBeam();
             }
-            else if (attackNum == 2)
+            else if (attackNum == 2) // 마비 공격
             {
-                Paralysis();
+                prevAttactNum = 2;
+                StartCoroutine(Paralysis());
+            }
+            else if (attackNum == 3) // 실드 공격
+            {
+                prevAttactNum = 3;
+                MakeShield();
             }
 
             attackCount++;
 
-            if (attackCount < 5)
+            if (attackCount < 5 && attackNum != 3)
             {
                 yield return new WaitForSeconds(6.0f);
-            } else { // 공격 5번 쿨타임
-                yield return new WaitForSeconds(30.0f);
+            }
+            else if (attackCount == 5)
+            { // 공격 5번 쿨타임
+                attackCount = 0;
+                yield return new WaitForSeconds(15.0f);
+            }
+            else // 공격 3일때 
+            {
+                yield return new WaitWhile(() => isShield);
+                spawnEtcMons = null;
             }
         }
     }
@@ -73,31 +94,42 @@ public class BossMonster : MonoBehaviour
         Debug.Log("공격1");
         for (int i = 0; i < maxBeam; i++)
         {
-            beams[i] = Instantiate(beam, setBeamPos(i), Quaternion.identity); // 위치는 후에 맵에 맞춰서 수정
+            Instantiate(beam, setPos(i), Quaternion.identity); // 위치는 후에 맵에 맞춰서 수정
         }
 
         startBeamAnimation();
     }
 
-    private void Paralysis() // 마비 공격
+    IEnumerator Paralysis() // 마비 공격
     {
-        isEyeOpen = true;
-        /*if() // 스프라이트가 눈을 바라보던가 아님 변수 따로 설정
-         * 움직임 고정(후에 player 스크립트에 bool 형 변수 넣어서 움직임 제어)
-         * 마비는 4초정도?
-         */
-
         Debug.Log("공격2");
+        if (player.playerDir == PlayerDir.Up)
+        {
+            Debug.Log("마비 시작");
+            player.SetSpeed(0.0f);
+            player.SetAnimator(false);
+
+            yield return new WaitForSeconds(paralysisTime);
+
+            Debug.Log("마비 끝");
+            player.SetSpeed(5.0f);
+            player.SetAnimator(true);
+        }
     }
 
-    private void MakeShield()
+    private void MakeShield() // 실드 공격
     {
-        //  현재 체력 < max체력 / 2.0f 일 경우 몬스터 소환
-        // 실드 작용. 공격을 받을 수 있는지에 대한 bool 체크 사용. bool 변함
+        isShield = true;
+        for (int i = 0; i < maxEtcMons; i++)
+        {
+            spawnEtcMons += () => StartCoroutine(SpawnEtcMons(i, etcMons[Random.Range(1, 3)]));
+        }
+
+        spawnEtcMons();
     }
 
     // 빔 위치 설정 함수
-    private Vector2 setBeamPos(int i)
+    private Vector2 setPos(int i)
     {
         Vector2 pos = new Vector2(0f, 0f);
 
@@ -128,6 +160,29 @@ public class BossMonster : MonoBehaviour
 
 
         return pos;
+    }
+
+    // 체력 감소
+    public void DecreaseHp(float attack)
+    {
+        if (!isShield)
+        {
+            hp -= attack;
+            if (hp < bossMonster.hp / 2.0f)
+            {
+                isHpHalf = true;
+            }
+        }
+    }
+
+    // etcMons 생성
+    IEnumerator SpawnEtcMons(int i, GameObject etcMon)
+    {
+        GameObject circle = Instantiate(spawnCircle, setPos(i), Quaternion.identity);
+        yield return new WaitForSeconds(0.5f);
+        Instantiate(etcMon, setPos(i), Quaternion.identity).tag = "EtcMon";
+        yield return new WaitForSeconds(0.5f);
+        Destroy(circle);
     }
 
 }

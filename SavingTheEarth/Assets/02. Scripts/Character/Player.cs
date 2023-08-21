@@ -3,6 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
+public enum PlayerDir
+{ // 캐릭터 방향 열거
+    Up,
+    Down,
+    Right,
+    Left
+};
+
 enum CurMap
 { // 맵 열거형
     BaseMap
@@ -12,6 +20,8 @@ public class Player : Character
     public delegate void BaseMapDel(); // 기본맵 관련 델리게이트
     public event BaseMapDel activateFace; // BaseMapFace 활성화 이벤트
     public event BaseMapDel deactivateFace; // BaseMapFace 비활성화 이벤트
+
+    public PlayerDir playerDir = PlayerDir.Down; // 플레이어 현재 방향
 
     // override는 상속받은 클래스의 메소드 중에서 virtual로 선언된 부분을 재정의
     protected override void Update()
@@ -34,6 +44,8 @@ public class Player : Character
     }
 
     // 마우스 상호작용 추가하기
+
+
     // 충돌 처리
     private void OnTriggerEnter2D(Collider2D collision)
     {
