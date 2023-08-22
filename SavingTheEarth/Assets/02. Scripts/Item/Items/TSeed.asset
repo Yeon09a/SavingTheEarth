@@ -12,8 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f0da7c588ddfce54ab9a067aaf27bc69, type: 3}
   m_Name: TSeed
   m_EditorClassIdentifier: 
-  itName: 
+  itName: "\uD1A0\uB9C8\uD1A0 \uC528\uC557"
   id: 9
-  info: 
+  info: "\uC7A0\uC218\uD568\uC758 \uC628\uC2E4\uC5D0\uC11C \uC7AC\uBC30\uD560 \uC218
+    \uC788\uB294 \uD1A0\uB9C8\uD1A0 \uC528\uC557"
   image: {fileID: 0}
   type: 1

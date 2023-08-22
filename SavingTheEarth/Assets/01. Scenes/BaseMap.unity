@@ -133,7 +133,7 @@ GameObject:
   m_Component:
   - component: {fileID: 404095860}
   - component: {fileID: 404095861}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: ProfPic
   m_TagString: Clue
   m_Icon: {fileID: 0}
@@ -210,7 +210,7 @@ GameObject:
   m_Component:
   - component: {fileID: 577519524}
   - component: {fileID: 577519525}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: ProfShelf
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -287,7 +287,7 @@ GameObject:
   m_Component:
   - component: {fileID: 586277003}
   - component: {fileID: 586277004}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: LabNav
   m_TagString: Clue
   m_Icon: {fileID: 0}
@@ -364,7 +364,7 @@ GameObject:
   m_Component:
   - component: {fileID: 630254403}
   - component: {fileID: 630254404}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: PlayerShelf
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -441,7 +441,7 @@ GameObject:
   m_Component:
   - component: {fileID: 759647809}
   - component: {fileID: 759647810}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: GHDoor
   m_TagString: Door
   m_Icon: {fileID: 0}
@@ -518,7 +518,7 @@ GameObject:
   m_Component:
   - component: {fileID: 894324961}
   - component: {fileID: 894324962}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: ProfTable
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1006,7 +1006,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1534904548}
   - component: {fileID: 1534904549}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: LabTable
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1083,7 +1083,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1693688048}
   - component: {fileID: 1693688049}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: OutDoor
   m_TagString: Door
   m_Icon: {fileID: 0}
@@ -1244,7 +1244,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1724008821}
   - component: {fileID: 1724008822}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: PlayerBed
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1550,7 +1550,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2143339835}
   - component: {fileID: 2143339836}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: MainDoor
   m_TagString: Door
   m_Icon: {fileID: 0}

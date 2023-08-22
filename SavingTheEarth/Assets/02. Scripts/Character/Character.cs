@@ -10,7 +10,7 @@ public abstract class Character : MonoBehaviour
     protected float hp;
     public float speed;
     protected Vector2 direction;
-    private Animator animator;
+    protected Animator animator;
 
     void Start()
     {

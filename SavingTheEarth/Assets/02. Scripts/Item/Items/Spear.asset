@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f0da7c588ddfce54ab9a067aaf27bc69, type: 3}
   m_Name: Spear
   m_EditorClassIdentifier: 
-  itName: 
+  itName: "\uCC3D"
   id: 1
-  info: 
+  info: "\uBAAC\uC2A4\uD130\uB97C \uD574\uCE58\uC6B0\uAE30 \uC704\uD55C \uCC3D"
   image: {fileID: 0}
   type: 2
