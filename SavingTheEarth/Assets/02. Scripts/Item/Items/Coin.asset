@@ -12,8 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f0da7c588ddfce54ab9a067aaf27bc69, type: 3}
   m_Name: Coin
   m_EditorClassIdentifier: 
-  itName: Coin
+  itName: "\uC758\uBBF8\uC2EC\uC7A5\uD55C \uC8FC\uD654"
   id: 0
-  info: You can put an explanation here
+  info: "\uC801\uC5D0\uAC8C\uC11C \uC5BB\uC740 \uC8FC\uD654. \\n\uC911\uC559\uC5D0
+    \uC758\uBBF8\uC2EC\uC7A5\uD55C \uADF8\uB9BC\uC774 \uADF8\uB824\uC838 \uC788\uB2E4.
+    \uAD50\uC218\uB2D8\uC744 \uCC3E\uC744 \uC218 \uC788\uB294 \uB2E8\uC11C\uC77C\uC9C0\uB3C4...?
+    \\n\uC0C1\uC810\uC5D0\uC11C \uC544\uC774\uD15C\uC744 \uC0B4 \uB54C \uC0AC\uC6A9\uD560
+    \uC218 \uC788\uB2E4. "
   image: {fileID: 0}
   type: 2

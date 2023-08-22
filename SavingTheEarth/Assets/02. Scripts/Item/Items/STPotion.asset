@@ -12,8 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f0da7c588ddfce54ab9a067aaf27bc69, type: 3}
   m_Name: STPotion
   m_EditorClassIdentifier: 
-  itName: 
+  itName: "\uC2A4\uD14C\uBBF8\uB108 \uD68C\uBCF5 \uD3EC\uC158"
   id: 5
-  info: 
+  info: "\uB9C8\uC2DC\uBA74 \uC77C\uC815\uD55C \uC591\uC758 \uC2A4\uD14C\uBBF8\uB108\uB97C
+    \uD68C\uBCF5\uD560 \uC218 \uC788\uB2E4."
   image: {fileID: 21300012, guid: ddf8838d0a06d8d4c9dec9e3bed69260, type: 3}
   type: 1

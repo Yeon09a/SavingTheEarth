@@ -44,9 +44,12 @@ public class BossMonster : Character
     }
 
     // Update is called once per frame
-    void Update()
+    protected override void Update()
     {
-        
+        if (isShield) // 존재하는 etcMons 수 계산
+        {
+
+        }
     }
 
     IEnumerator Attack()
