@@ -48,4 +48,9 @@ public class PoisonBubble : MonoBehaviour
     {
         MiddleOctMonster.startBubbleMove -= startBubbleMove;
     }
+
+    private void OnDestroy()
+    {
+        Resources.UnloadUnusedAssets();
+    }
 }
