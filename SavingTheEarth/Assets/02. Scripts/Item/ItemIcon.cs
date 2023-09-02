@@ -51,4 +51,9 @@ public class ItemIcon : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         isOpened = false;
         itemInfoTr.gameObject.SetActive(false);
     }
+
+    private void OnDestroy()
+    {
+        Resources.UnloadUnusedAssets();
+    }
 }

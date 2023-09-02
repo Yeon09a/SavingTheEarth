@@ -62,4 +62,9 @@ public class PoisonBeam : MonoBehaviour
     {
         MiddleOctMonster.startBeamAnimation -= StartBeamAnimation;
     }
+
+    private void OnDestroy()
+    {
+        Resources.UnloadUnusedAssets();
+    }
 }

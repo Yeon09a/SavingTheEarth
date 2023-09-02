@@ -62,4 +62,10 @@ public class BossBeam : MonoBehaviour
     {
         BossMonster.startBeamAnimation -= StartBeamAnimation;
     }
+
+    private void OnDestroy()
+    {
+        Resources.UnloadUnusedAssets();
+    }
+
 }
