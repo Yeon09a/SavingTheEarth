@@ -37,13 +37,13 @@ public class UIManager : MonoBehaviour
         mapExitBtn.onClick.AddListener(CloseMap);
 
         // 위치 설정
-        inventoryBtn.GetComponent<RectTransform>().anchoredPosition = new Vector2(532, 40);
+        /*inventoryBtn.GetComponent<RectTransform>().anchoredPosition = new Vector2(532, 40);
         itemList.GetComponent<RectTransform>().anchoredPosition = new Vector2(0, 40);
         playerInfoPanel.GetComponent<RectTransform>().anchoredPosition = new Vector2(30, -30);
         settingBtn.GetComponent<RectTransform>().anchoredPosition = new Vector2(-70, -70);
         miniMap.GetComponent<RectTransform>().anchoredPosition = new Vector2(-180, -290);
         moneyPanel.GetComponent<RectTransform>().anchoredPosition = new Vector2(-180, -510);
-        timePanel.GetComponent<RectTransform>().anchoredPosition = new Vector2(-180, -620);
+        timePanel.GetComponent<RectTransform>().anchoredPosition = new Vector2(-180, -620);*/
     }
 
     private void SetInventory() // 인벤토리 열기
