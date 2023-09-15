@@ -65,6 +65,6 @@ public abstract class Character : MonoBehaviour
     public void SetAnimator(bool b)
     {
         animator.enabled = b;
-        animator.Play("idle_Up");
+        animator.Play("idle_Up", 0);
     }
 }
