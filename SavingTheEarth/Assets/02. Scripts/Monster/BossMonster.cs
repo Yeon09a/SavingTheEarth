@@ -47,6 +47,11 @@ public class BossMonster : Character
         StartCoroutine(Attack());
     }
 
+    protected override void Update()
+    {
+        
+    }
+
     IEnumerator Attack()
     {
         while (true)
