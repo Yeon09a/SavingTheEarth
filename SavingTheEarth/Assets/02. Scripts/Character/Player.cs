@@ -66,6 +66,7 @@ public class Player : Character
                 // hit.collider가 레이와 충돌한 오브젝트
             }
         }
+        HandleLayers();
     }
 
     // 키보드 입력값을 받음 (방향 및 멈춤 제어)
