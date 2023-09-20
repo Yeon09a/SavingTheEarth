@@ -33,7 +33,7 @@ public class ItemIcon : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
                 itemInfoTr.GetChild(1).GetComponent<Image>().sprite = itemInfo.image;
                 itemInfoTr.GetChild(2).GetComponent<TextMeshProUGUI>().text = itemInfo.itName;
                 itemInfoTr.GetChild(3).GetComponent<TextMeshProUGUI>().text = itemInfo.info;
-                itemInfoTr.GetComponent<RectTransform>().position = transform.GetChild(0).position + new Vector3(-250, 100, 0);
+                itemInfoTr.GetComponent<RectTransform>().position = transform.GetChild(0).position + new Vector3(-180, 90, 0);
                 itemInfoTr.gameObject.SetActive(true);
                 curTime = 2.0f;
                 isOpened = false; // 타이머가 끝났으므로 false
