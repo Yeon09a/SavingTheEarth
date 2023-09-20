@@ -23,7 +23,7 @@ public class TimeManager : MonoBehaviour
         curTime = 540;// 어떻게 설정할 것인지는 개발하면서 
         uiMinutes = 0;
         uiHours = 9;
-        ampm = " a.m.";
+        ampm = "오전  ";
     }
     void Start()
     {
@@ -43,12 +43,12 @@ public class TimeManager : MonoBehaviour
         {
             uiHours = 1;
             curTime = 60;
-            if (ampm.Equals(" a.m."))
+            if (ampm.Equals("오전  "))
             {
-                ampm = " p.m.";
-            } else if (ampm.Equals(" p.m."))
+                ampm = "오후  ";
+            } else if (ampm.Equals("오후  "))
             {
-                ampm = " a.m.";
+                ampm = "오전  ";
             }
         }
     }
@@ -57,7 +57,7 @@ public class TimeManager : MonoBehaviour
         while (true)
         {
             calTime();
-            timeText.text = uiHours.ToString() + " : " + uiMinutes.ToString("D2") + ampm;
+            timeText.text = ampm + uiHours.ToString() + " : " + uiMinutes.ToString("D2");
             yield return new WaitForSeconds(standTime);
             curTime += gameStandTime;
         }
