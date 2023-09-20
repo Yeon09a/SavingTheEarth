@@ -11,8 +11,9 @@ public enum PlayerDir
     Left
 };
 
-enum CurMap
+public enum MapName
 { // 맵 열거형
+    Title,
     BaseMap
 }
 public class Player : Character
@@ -26,6 +27,15 @@ public class Player : Character
     private RaycastHit2D hit; // 레이캐스트 결괏값을 저장하기 위한 구조체 선언
     private Vector3 interPos; // 상호작용할 방향(레이 발사할 방향)
     private float rayLength; // 레이 길이
+
+    protected override void Start()
+    {
+        base.Start();
+        if (GameManager.instance.preMap == MapName.Title)
+        {
+            transform.position = new Vector3(12.63f, 3.3f, 0);
+        }
+    }
 
     // override는 상속받은 클래스의 메소드 중에서 virtual로 선언된 부분을 재정의
     protected override void Update()

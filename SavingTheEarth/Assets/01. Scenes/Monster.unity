@@ -167,8 +167,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c4c27681da7b2f84a8976c48fd0aa711, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hp: 0
   speed: 0
+  hp: 0
   beam: {fileID: 3369520427740991430, guid: ae0a718dbb8667c459f899fcddf7ab7c, type: 3}
   etcMons: []
   spawnCircle: {fileID: 5928853335110683335, guid: 876cc5de3b529ae4f891f194700e90ff, type: 3}
@@ -219,7 +219,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &4403414164953623667
 GameObject:
   m_ObjectHideFlags: 0
