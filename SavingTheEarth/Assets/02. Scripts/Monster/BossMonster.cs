@@ -7,7 +7,6 @@ public class BossMonster : Character
     
     [Header ("BossInfo")]
     public GameObject beam;
-    private int beamCount = 0;
     public GameObject[] etcMons;
     public GameObject spawnCircle;
 

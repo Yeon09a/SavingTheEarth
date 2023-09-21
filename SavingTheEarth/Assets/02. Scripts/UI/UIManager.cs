@@ -23,6 +23,7 @@ public class UIManager : MonoBehaviour
     public Button setOkayBtn; // 설정 창 확인 버튼
     public GameObject fullMap; // 전체 맵 창
     public Button mapExitBtn; // 전체 맵 닫기 버튼
+    public Button inventoryExitBtn;
 
     public Button goTitleBtn;
     public GameObject titleCheckPanel;
@@ -44,6 +45,7 @@ public class UIManager : MonoBehaviour
         goTitleBtn.onClick.AddListener(OpenCheckTitle);
         titleOkayBtn.onClick.AddListener(ClickTitleOkayBtn);
         titleNoBtn.onClick.AddListener(ClickTitleNoBtn);
+        inventoryExitBtn.onClick.AddListener(SetInventory);
     }
 
     private void SetInventory() // 인벤토리 열기
