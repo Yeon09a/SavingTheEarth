@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class UIManager : MonoBehaviour
 {
@@ -23,6 +24,11 @@ public class UIManager : MonoBehaviour
     public GameObject fullMap; // 전체 맵 창
     public Button mapExitBtn; // 전체 맵 닫기 버튼
 
+    public Button goTitleBtn;
+    public GameObject titleCheckPanel;
+    public Button titleOkayBtn;
+    public Button titleNoBtn;
+
     private bool isInvenOpen = false; // 인벤토리 상태
 
     
@@ -35,6 +41,9 @@ public class UIManager : MonoBehaviour
         settingBtn.onClick.AddListener(OpenSetting);
         setOkayBtn.onClick.AddListener(CloseSetting);
         mapExitBtn.onClick.AddListener(CloseMap);
+        goTitleBtn.onClick.AddListener(OpenCheckTitle);
+        titleOkayBtn.onClick.AddListener(ClickTitleOkayBtn);
+        titleNoBtn.onClick.AddListener(ClickTitleNoBtn);
     }
 
     private void SetInventory() // 인벤토리 열기
@@ -80,6 +89,24 @@ public class UIManager : MonoBehaviour
     private void CloseMap()
     {
         fullMap.SetActive(false);
+    }
+
+    private void OpenCheckTitle()
+    {
+        settingPanel.SetActive(false);
+        titleCheckPanel.SetActive(true);
+    }
+
+    private void ClickTitleOkayBtn()
+    {
+        GameManager.instance.curMap = MapName.Title;
+        SceneManager.LoadScene("Title");
+    }
+
+    private void ClickTitleNoBtn()
+    {
+        settingPanel.SetActive(true);
+        titleCheckPanel.SetActive(false);
     }
 
 }

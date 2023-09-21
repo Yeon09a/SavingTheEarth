@@ -10,5 +10,5 @@ public class Item : ScriptableObject
     [TextArea]
     public string info; // 아이템 정보
     public Sprite image; // 아이템 이미지
-    public int type; // 아이템 종류
+    public int type; // 아이템 종류(1 : 소지품, 2 : 중요물품)
 }

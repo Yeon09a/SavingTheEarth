@@ -124,7 +124,7 @@ public class TitleManager : MonoBehaviour
     {
         if (sTag == "Select0")
         {
-            GameManager.instance.playerName = playerName;
+            PlayerData.instance.playerName = playerName;
             GameManager.instance.curMap = MapName.BaseMap;
             GameManager.instance.preMap = MapName.Title;
 

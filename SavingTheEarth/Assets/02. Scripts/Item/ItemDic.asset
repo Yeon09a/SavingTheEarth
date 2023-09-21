@@ -12,4 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ba13a1b808698454b92d30c2d2c7a93b, type: 3}
   m_Name: ItemDic
   m_EditorClassIdentifier: 
-  items: []
+  items:
+  - {fileID: 11400000, guid: e3499299fcbd31442b8fa8ae2508ad93, type: 2}
+  - {fileID: 11400000, guid: 090d4bdd9cc5fdd4fa6ac1b42b27f48f, type: 2}
+  - {fileID: 11400000, guid: e249bbc02b77d3d408b06640eaced7a4, type: 2}
+  - {fileID: 11400000, guid: bdd7e050f11b34e4ebc6e83fc807a181, type: 2}
+  - {fileID: 11400000, guid: 299b67746a9ea27478b4b5649eeac84d, type: 2}
+  - {fileID: 11400000, guid: a3fa2be92e1488a4a8b7315997866658, type: 2}
+  - {fileID: 11400000, guid: 4c6fabb08a3934b45871a3e647323df2, type: 2}
+  - {fileID: 11400000, guid: a747261d7367fc44abff6dabfd5ad4cd, type: 2}
+  - {fileID: 11400000, guid: 3f7281f764cb38c4c8f56f7f6cb5a446, type: 2}
+  - {fileID: 11400000, guid: c4a56b22d43d9cd4c958e9237af1b024, type: 2}
