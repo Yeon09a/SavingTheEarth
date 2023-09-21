@@ -31,6 +31,19 @@ public class TitleManager : MonoBehaviour
     public delegate void SelectDel();
 
 
+    private void Update()
+    {
+        // 임시 이동
+        if (Input.GetKeyDown(KeyCode.F5))
+        {
+            GameManager.instance.curMap = MapName.BaseMap;
+            GameManager.instance.preMap = MapName.Title;
+
+            SceneManager.LoadScene("BaseMap");
+            SceneManager.LoadScene("Player", LoadSceneMode.Additive);
+        }
+    }
+
     // Start is called before the first frame update
     void Start()
     {
