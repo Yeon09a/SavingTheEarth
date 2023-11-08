@@ -120,9 +120,11 @@ public class TitleManager : MonoBehaviour
     }
     #endregion
 
-    public void SetSelectResult(string sTag, SelectDel deleteSelect)
+    public void SetSelectResult(string sTag, SelectDel deleteSelect) // 버튼 선택 함수
     {
-        if (sTag == "Select0")
+        Debug.Log(sTag);
+        
+        if (sTag.Equals("Select0"))
         {
             PlayerData.instance.playerName = playerName;
             GameManager.instance.curMap = MapName.BaseMap;
