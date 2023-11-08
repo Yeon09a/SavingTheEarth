@@ -13,9 +13,11 @@ public enum PlayerDir
 
 public enum MapName
 { // 맵 열거형
+    SaveTitle,
     Title,
     BaseMap
 }
+
 public class Player : Character
 {
 
@@ -31,6 +33,9 @@ public class Player : Character
         if (GameManager.instance.preMap == MapName.Title)
         {
             transform.position = new Vector3(12.63f, 3.3f, 0);
+        } else if (GameManager.instance.preMap == MapName.SaveTitle)
+        {
+            transform.position = DataManager.instance.nowPlayerData.playerPos;
         }
     }
 
@@ -108,4 +113,6 @@ public class Player : Character
 
     // 마우스 상호작용 추가하기
 
+
+    
 }

@@ -36,6 +36,8 @@ public class UIManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        
+        
         // UI 리스너 연결
         inventoryBtn.onClick.AddListener(SetInventory);
         itemTgl.onValueChanged.AddListener(OnItemPanel);

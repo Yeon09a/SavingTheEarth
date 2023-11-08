@@ -34,8 +34,6 @@ public class InventoryManager : MonoBehaviour
 
     private void Awake()
     {
-        
-        
         // 나중에 저장 데이터 필요
         checkItemList = new bool[5];
         checkItem = new bool[15];
@@ -45,7 +43,8 @@ public class InventoryManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        /*foreach (KeyValuePair<int, HaveItemInfo> item in PlayerData.instance.haveItems)
+        // 소지한 아이템 불러오기
+        foreach (KeyValuePair<int, HaveItemInfo> item in DataManager.instance.nowPlayerData.haveItems)
         {
             if (item.Value.place == 0) // 아이템 창
             {
@@ -57,7 +56,7 @@ public class InventoryManager : MonoBehaviour
             {
                 LoadItemIcon(pItemSlots, checkPItem, item.Key, item.Value.slotNum, item.Value.count);
             }
-        }*/
+        }
     }
 
     private void LoadItemIcon(GameObject[] slots, bool[] checkSlots, int id, int index, int count) // 아이템 아이콘 불러오기
@@ -73,9 +72,9 @@ public class InventoryManager : MonoBehaviour
 
     private int CheckHaveItem(int id) // 아이템을 현재 가지고 있는지 확인
     {
-        if (PlayerData.instance.haveItems.ContainsKey(id)) // 아이템을 가지고 있는 경우
+        if (DataManager.instance.nowPlayerData.haveItems.ContainsKey(id)) // 아이템을 가지고 있는 경우
         {
-            return PlayerData.instance.haveItems[id].place;
+            return DataManager.instance.nowPlayerData.haveItems[id].place;
         }
         else // 가지고 있지 않은 경우
         {
@@ -170,12 +169,12 @@ public class InventoryManager : MonoBehaviour
         icon.GetComponent<ItemIcon>().itemInfo = items.items[id];
         icon.transform.SetParent(slots[index].transform.GetChild(0));
         checkSlots[index] = true ;
-        PlayerData.instance.haveItems.Add(id, new HaveItemInfo(place, 1, index));
+        DataManager.instance.nowPlayerData.haveItems.Add(id, new HaveItemInfo(place, 1, index));
     }
 
     public void PutHaveItem(int id, GameObject[] slots) // 기존에 가지고 있던 아이템 추가
     {
-        HaveItemInfo haveItemInfo = PlayerData.instance.haveItems[id];
+        HaveItemInfo haveItemInfo = DataManager.instance.nowPlayerData.haveItems[id];
         int slotNum = haveItemInfo.slotNum;
         haveItemInfo.count += 1;
         slots[slotNum].transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = haveItemInfo.count.ToString();
