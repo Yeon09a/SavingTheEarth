@@ -18,9 +18,6 @@ public enum MapName
 }
 public class Player : Character
 {
-    public delegate void BaseMapDel(); // 기본맵 관련 델리게이트
-    public event BaseMapDel activateFace; // BaseMapFace 활성화 이벤트
-    public event BaseMapDel deactivateFace; // BaseMapFace 비활성화 이벤트
 
     public PlayerDir playerDir = PlayerDir.Down; // 플레이어 현재 방향
 
@@ -111,21 +108,4 @@ public class Player : Character
 
     // 마우스 상호작용 추가하기
 
-
-    // 충돌 처리
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.tag.Equals("BaseFace"))
-        {
-            activateFace();
-        }
-    }
-
-    private void OnTriggerExit2D(Collider2D collision)
-    {
-        if (collision.tag.Equals("BaseFace"))
-        {
-            deactivateFace();
-        }
-    }
 }
