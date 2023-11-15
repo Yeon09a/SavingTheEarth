@@ -13,6 +13,7 @@ public class DataManager : MonoBehaviour
     private string fileName = "PlayerSaveData";
 
     public PlayerData nowPlayerData;
+    public PlayerData savePlayerData;
 
 
     private void Awake()
@@ -33,8 +34,6 @@ public class DataManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        nowPlayerData = new PlayerData(0, "잠수함", 2, 540, "오전  ", new Dictionary<int, HaveItemInfo>());
-
         path = Application.dataPath + "/09. Data/";
     }
 
@@ -50,9 +49,14 @@ public class DataManager : MonoBehaviour
         File.WriteAllText(path + fileName, data);
     }
 
-    public void LoadData() // 불러오기
+    public void LoadData(int slotNum) // 불러오기
     {
-        string loadData = File.ReadAllText(path + fileName);
-        nowPlayerData = PlayerJsonUtility.FromJson(loadData);
+        string loadData = File.ReadAllText(path + fileName + slotNum);
+        savePlayerData = PlayerJsonUtility.FromJson(loadData);
+    }
+
+    public void PlayNewData() // nowPlayerData 세팅
+    {
+        nowPlayerData = new PlayerData(0, "잠수함", 2, 540, "오전  ", new Dictionary<int, HaveItemInfo>(), 0);
     }
 }

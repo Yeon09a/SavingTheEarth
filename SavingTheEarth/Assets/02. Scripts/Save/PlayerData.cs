@@ -14,12 +14,13 @@ public class PlayerData // 플레이어 데이터 클래스
     public Vector3 playerPos; // 플레이어 좌표
     public int gameTime; // 게임 시간
     public string ampm; // 오전, 오후
+    public int money; // 돈
 
     // 아이템 관련 변수
     [NonSerialized]
     public Dictionary<int, HaveItemInfo> haveItems; // 현재 가지고 있는 아이템 딕셔너리<아이템 id, 아이템 정보>
 
-    public PlayerData(int playTime, string placeName, int placeNum, int gameTime, string ampm , Dictionary<int, HaveItemInfo> haveItems) // 후에 플레이어 변수 추가시 매개변수 추가할 예정
+    public PlayerData(int playTime, string placeName, int placeNum, int gameTime, string ampm , Dictionary<int, HaveItemInfo> haveItems, int money) // 후에 플레이어 변수 추가시 매개변수 추가할 예정
     {
         this.playTime = playTime;
         this.placeName = placeName;
@@ -27,5 +28,6 @@ public class PlayerData // 플레이어 데이터 클래스
         this.gameTime = gameTime;
         this.ampm = ampm;
         this.haveItems = haveItems;
+        this.money = money;
     }
 }

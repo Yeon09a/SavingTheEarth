@@ -43,16 +43,25 @@ public class InventoryManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        UpdateInventory();
+    }
+
+    
+
+    public void UpdateInventory()
+    {
         // 소지한 아이템 불러오기
         foreach (KeyValuePair<int, HaveItemInfo> item in DataManager.instance.nowPlayerData.haveItems)
         {
             if (item.Value.place == 0) // 아이템 창
             {
                 LoadItemIcon(itemListSlots, checkItemList, item.Key, item.Value.slotNum, item.Value.count);
-            } else if (item.Value.place == 1) // 소지품
+            }
+            else if (item.Value.place == 1) // 소지품
             {
                 LoadItemIcon(itemSlots, checkItem, item.Key, item.Value.slotNum, item.Value.count);
-            } else // 중요물품
+            }
+            else // 중요물품
             {
                 LoadItemIcon(pItemSlots, checkPItem, item.Key, item.Value.slotNum, item.Value.count);
             }
@@ -180,7 +189,7 @@ public class InventoryManager : MonoBehaviour
         slots[slotNum].transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = haveItemInfo.count.ToString();
     }
 
-    private bool PutItem(int id) // 아이템 획득
+    public bool PutItem(int id) // 아이템 획득
     {
         int place = CheckHaveItem(id);
         if(place == -1) // 새로 얻은 경우

@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -26,6 +27,9 @@ public class Player : Character
     private RaycastHit2D hit; // 레이캐스트 결괏값을 저장하기 위한 구조체 선언
     private Vector3 interPos; // 상호작용할 방향(레이 발사할 방향)
     private float rayLength; // 레이 길이
+
+    public Action OpenShop; // 상점을 여는 액션
+
 
     protected override void Start()
     {
