@@ -1,11 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.EventSystems;
 using System.IO;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
-public class SavePanel : MonoBehaviour, IPointerUpHandler
+public class SavePanel : MonoBehaviour
 {
     private string path;
 
@@ -17,6 +17,7 @@ public class SavePanel : MonoBehaviour, IPointerUpHandler
     void Start()
     {
         path = Application.dataPath + "/09. Data/";
+        GetComponent<Button>().onClick.AddListener(ClickSavePanel);
     }
 
     // Update is called once per frame
@@ -25,15 +26,16 @@ public class SavePanel : MonoBehaviour, IPointerUpHandler
         
     }
 
-    public void OnPointerUp(PointerEventData eventData)
+    private void ClickSavePanel()
     {
         if (isFile)
         {
-            DataManager.instance.LoadData();
+            DataManager.instance.LoadData(slotNum);
             EnterGame();
 
 
-        } else
+        }
+        else
         {
             saveInfoPanel.SetActive(true);
         }

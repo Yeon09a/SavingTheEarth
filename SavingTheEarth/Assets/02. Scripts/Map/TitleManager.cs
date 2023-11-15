@@ -140,7 +140,7 @@ public class TitleManager : MonoBehaviour
         {
             if (File.Exists(path + "PlayerSaveData" + i.ToString()))
             {
-                DataManager.instance.LoadData();
+                DataManager.instance.LoadData(i);
                 int playTime = DataManager.instance.nowPlayerData.playTime;
                 int sec = playTime % 60;
                 int min = (playTime / 60) % 60;
@@ -168,6 +168,7 @@ public class TitleManager : MonoBehaviour
         
         if (sTag.Equals("Select0"))
         {
+            DataManager.instance.PlayNewData();
             DataManager.instance.nowPlayerData.playerName = playerName;
             GameManager.instance.curMap = MapName.BaseMap;
             GameManager.instance.preMap = MapName.Title;
