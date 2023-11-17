@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
 public class HaveItemInfo
 {
@@ -32,6 +33,61 @@ public class InventoryManager : MonoBehaviour
 
     public ItemDic items; // 아이템 종류 에셋
 
+    public SlotClick[] slots; // 슬롯 배열
+    private SlotClick selectedSlot = null; // 선택된 슬롯
+
+    void Update()
+    {
+        // 키보드 입력을 통해 슬롯 선택
+        for (int i = 0; i < slots.Length; i++)
+        {
+            if (Input.GetKeyDown(KeyCode.Alpha1 + i))
+            {
+                // 변경된 부분: 슬롯 번호를 SlotClick 객체로 변환
+                SlotClick clickedSlot = slots[i];
+                HandleSlotSelection(clickedSlot);
+            }
+        }
+    }
+
+    public void HandleSlotSelection(SlotClick clickedSlot)
+    {
+        bool isSelected = clickedSlot.IsSelected();
+
+        if (isSelected)
+        {
+            // 이미 선택된 슬롯을 다시 선택한 경우
+            clickedSlot.Deselect();
+            selectedSlot = null; // 선택된 슬롯 업데이트
+        }
+        else
+        {
+            // 새로운 슬롯을 선택한 경우
+            if (selectedSlot != null)
+            {
+                // 이전에 선택한 슬롯이 있으면 해당 슬롯을 선택 해제
+                selectedSlot.Deselect();
+            }
+
+            clickedSlot.ToggleSelection();
+            selectedSlot = clickedSlot; // 선택된 슬롯 업데이트
+
+            // EventSystem을 사용하여 현재 선택된 게임 오브젝트 변경
+            EventSystem.current.SetSelectedGameObject(clickedSlot.gameObject);
+        }
+    }
+
+    public void SelectSlot(SlotClick clickedSlot)
+    {
+        if (selectedSlot != null)
+        {
+            selectedSlot.ToggleSelection(); // 이전에 선택한 슬롯 선택 해제
+        }
+
+        selectedSlot = clickedSlot; // 새로운 슬롯 선택
+        selectedSlot.ToggleSelection();
+    }
+
     private void Awake()
     {
         // 나중에 저장 데이터 필요
@@ -43,13 +99,19 @@ public class InventoryManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        UpdateInventory();
+        //UpdateInventory();
     }
 
-    
+
 
     public void UpdateInventory()
     {
+        // slots 배열 초기화
+        slots = GetComponentsInChildren<SlotClick>();
+
+        // 선택된 슬롯 초기화
+        selectedSlot = null;
+
         // 소지한 아이템 불러오기
         foreach (KeyValuePair<int, HaveItemInfo> item in DataManager.instance.nowPlayerData.haveItems)
         {
