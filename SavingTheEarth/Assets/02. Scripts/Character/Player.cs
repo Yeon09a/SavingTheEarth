@@ -30,6 +30,10 @@ public class Player : Character
 
     public Action OpenShop; // 상점을 여는 액션
 
+    GameObject scanObject; // 레이와 충돌한 오브젝트 저장
+
+    public DialogManager dialogManager;
+
 
     protected override void Start()
     {
@@ -80,7 +84,14 @@ public class Player : Character
             {
                 // 여기에서 상호작용
                 // hit.collider가 레이와 충돌한 오브젝트
+
+                scanObject = hit.collider.gameObject;
+
+
+                dialogManager.Talk(scanObject);
             }
+            else
+                scanObject = null;
         }
         HandleLayers();
     }
