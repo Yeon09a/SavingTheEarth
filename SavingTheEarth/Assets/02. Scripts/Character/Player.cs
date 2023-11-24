@@ -95,11 +95,9 @@ public class Player : Character
             {
                 // 여기에서 상호작용
                 // hit.collider가 레이와 충돌한 오브젝트
-
                 scanObject = hit.collider.gameObject;
-                ScanObject = scanObject; // ScanObject 변수에 저장
 
-                //dialogManager.Talk(scanObject);
+                dialogManager.Talk(scanObject);
             }
             else
                 scanObject = null;
