@@ -16,7 +16,8 @@ public enum MapName
 { // 맵 열거형
     SaveTitle,
     Title,
-    BaseMap
+    BaseMap,
+    SeaMap
 }
 
 public class Player : Character
@@ -34,6 +35,8 @@ public class Player : Character
 
     public DialogManager dialogManager;
 
+    public GameObject ScanObject { get; private set; } // scanObject를 외부에서 읽기 위한 프로퍼티
+
 
     protected override void Start()
     {
@@ -41,7 +44,16 @@ public class Player : Character
         if (GameManager.instance.preMap == MapName.Title)
         {
             transform.position = new Vector3(12.63f, 3.3f, 0);
-        } else if (GameManager.instance.preMap == MapName.SaveTitle)
+        }
+        else if (GameManager.instance.preMap == MapName.SaveTitle)
+        {
+            transform.position = DataManager.instance.nowPlayerData.playerPos;
+        }
+        else if (GameManager.instance.preMap == MapName.BaseMap)
+        {
+            transform.position = new Vector3(0f, -2f, 0);
+        }
+        else if (GameManager.instance.preMap == MapName.SaveTitle)
         {
             transform.position = DataManager.instance.nowPlayerData.playerPos;
         }
@@ -53,7 +65,6 @@ public class Player : Character
         GetInput();
         // base는 상속받은 클래스의 기능을 가리킴
         base.Move();
-
         // 키보드 상호작용 
         if (Input.GetKeyDown(KeyCode.E)) // 상호작용 키
         {
@@ -84,9 +95,7 @@ public class Player : Character
             {
                 // 여기에서 상호작용
                 // hit.collider가 레이와 충돌한 오브젝트
-
                 scanObject = hit.collider.gameObject;
-
 
                 dialogManager.Talk(scanObject);
             }
@@ -108,7 +117,7 @@ public class Player : Character
         direction = moveVector;
 
         // 플레이어의 애니메이션에 따른 현재 방향 설정
-       if (myAnimator.GetCurrentAnimatorStateInfo(1).IsName("walk_Up")) 
+        if (myAnimator.GetCurrentAnimatorStateInfo(1).IsName("walk_Up"))
         {
             playerDir = PlayerDir.Up;
         }
@@ -129,5 +138,5 @@ public class Player : Character
     // 마우스 상호작용 추가하기
 
 
-    
+
 }

@@ -18,9 +18,7 @@ public class DialogManager : MonoBehaviour
 
     private void Start()
     {
-        dialogText = GetComponent<TextMeshProUGUI>();
-
-        dialogText.alignment = TextAlignmentOptions.Center;
+  
     }
 
     public void Talk(GameObject scanObj) // 대화 시작시 호출될 함수 => 플레이어 스크립트에서 호출 필요!!
@@ -34,7 +32,6 @@ public class DialogManager : MonoBehaviour
 
     void Conversation(int id, bool isNPC)
     {
-
         string dialogData = convoManager.GetDialog(id, dialogIndex); // 대사 가져와서 저장
 
         if (dialogData == null) // 대화가 종료됐을 때
