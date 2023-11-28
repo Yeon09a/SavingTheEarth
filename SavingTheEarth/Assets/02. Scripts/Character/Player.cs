@@ -37,7 +37,6 @@ public class Player : Character
 
     public GameObject ScanObject { get; private set; } // scanObject를 외부에서 읽기 위한 프로퍼티
 
-
     protected override void Start()
     {
         base.Start();
