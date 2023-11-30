@@ -43,16 +43,24 @@ public class DialogManager : MonoBehaviour
 
         if (isNPC) // 대화상대가 NPC라면
         {
-            // dialogText.text = dialogData.Split(':')[0]; // 대화창 텍스트로 띄우기 (Split()으로 구분자 제외)
+            dialogText.text = dialogData.Split('/')[0]; // 대화창 텍스트로 띄우기 (Split()으로 구분자 제외)
 
-            // portrait.sprite = convoManager.GetPortrait(id, int.Parse(dialogData.Split(':')[1])); // 초상화 이미지 변환
+            //portrait.sprite = convoManager.GetPortrait(id, int.Parse(dialogData.Split('/')[1])); // 초상화 이미지 변환
+            portrait.sprite = convoManager.GetPortrait(int.Parse(dialogData.Split('/')[1])); // 초상화 이미지 변환 
+
             portrait.color = new Color(1, 1, 1, 1); // NPC일 때만 초상화 띄우기
         }
-        else // 대화상대가 아이템이라면
+        else // 대화상대가 아이템이라면 (독백)
         {
-            dialogText.text = dialogData;
+            dialogText.text = dialogData.Split('/')[0]; // 대화창 텍스트로 띄우기 (Split()으로 구분자 제외)
 
-            portrait.color = new Color(1, 1, 1, 0); // NPC가 아니라면 초상화 안보이게
+            //portrait.sprite = convoManager.GetPortrait(id, int.Parse(dialogData.Split('/')[1])); // 초상화 이미지 변환
+            portrait.sprite = convoManager.GetPortrait(int.Parse(dialogData.Split('/')[1])); // 초상화 이미지 변환
+
+            if(int.Parse(dialogData.Split('/')[1]) == 6) // 초상화 필요 없는 대화일 경우
+                portrait.color = new Color(1, 1, 1, 0); // 초상화 안보이게
+            else
+                portrait.color = new Color(1, 1, 1, 1); 
         }
 
         isTalk = true;
