@@ -11958,6 +11958,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 733913406, guid: 8b008e418a60c0a4d961eb66a6f17409, type: 3}
+      propertyPath: m_GravityScale
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 433309964014529842, guid: 8b008e418a60c0a4d961eb66a6f17409, type: 3}
       propertyPath: dialogManager
       value: 
