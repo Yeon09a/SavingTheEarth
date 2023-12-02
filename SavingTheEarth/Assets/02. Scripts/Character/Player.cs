@@ -40,6 +40,7 @@ public class Player : Character
     protected override void Start()
     {
         base.Start();
+        
         if (GameManager.instance.preMap == MapName.Title)
         {
             transform.position = new Vector3(12.63f, 3.3f, 0);
@@ -50,16 +51,7 @@ public class Player : Character
         }
         else if (GameManager.instance.preMap == MapName.BaseMap)
         {
-            transform.position = new Vector3(0f, -2f, 0);
-        }
-        else if (GameManager.instance.preMap == MapName.SaveTitle)
-        {
-            transform.position = DataManager.instance.nowPlayerData.playerPos;
-        }
-        else if (GameManager.instance.preMap == MapName.SeaMap)
-        {
-            // SeaMap에 해당하는 초기 위치 설정 미해결
-            //transform.position = new Vector3(0f, -3.167668f, 0);
+            transform.position = new Vector3(-0.02f, -3.16f, 0);
         }
     }
 
@@ -106,6 +98,17 @@ public class Player : Character
                 {
                     ScanObject = scanObject; // ScanObject 변수에 저장
                     dialogManager.Talk(scanObject);
+                }
+
+                if (scanObject.CompareTag("Door"))
+                {
+                    if (scanObject.name.Equals("OutDoor"))
+                    {
+                        GameManager.instance.curMap = MapName.SeaMap;
+                        GameManager.instance.preMap = MapName.BaseMap;
+
+                        SceneLoadingManager.LoadScene("SeaMap");
+                    }
                 }
             }
             else
