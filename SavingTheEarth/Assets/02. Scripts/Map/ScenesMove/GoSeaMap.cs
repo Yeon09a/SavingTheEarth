@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class GoSeaMap : MonoBehaviour
 {
-    private Player player;
+    /*private Player player;
 
     private void Start()
     {
@@ -22,9 +22,8 @@ public class GoSeaMap : MonoBehaviour
                 GameManager.instance.curMap = MapName.SeaMap;
                 GameManager.instance.preMap = MapName.BaseMap;
 
-                SceneManager.LoadScene("SeaMap");
-                SceneManager.LoadScene("Player", LoadSceneMode.Additive);
+                SceneLoadingManager.LoadScene("SeaMap");
             }
         }
-    }
+    }*/
 }
