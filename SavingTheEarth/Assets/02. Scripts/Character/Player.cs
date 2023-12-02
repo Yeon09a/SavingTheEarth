@@ -30,6 +30,12 @@ public class Player : Character
     private float rayLength; // 레이 길이
 
     public Action OpenShop; // 상점을 여는 액션
+    public Action OpenFarmTool; // 농사 도구 UI 열기
+    public Action CloseFarmTool; // 농사 도구 UI 닫기
+    public Action OpenBox; // 박스 열기
+    public Action<int> ChangeFarmTool; // 농사 도구 바꾸기
+    public Action<int> ChangeCurTool; // 농사 도구 Num
+    public PlayerFarm playerFarm;
 
     GameObject scanObject; // 레이와 충돌한 오브젝트 저장
 
@@ -52,6 +58,10 @@ public class Player : Character
         else if (GameManager.instance.preMap == MapName.BaseMap)
         {
             transform.position = new Vector3(-0.02f, -3.16f, 0);
+            GetComponent<CapsuleCollider2D>().isTrigger = false;
+        } else if (GameManager.instance.preMap == MapName.SeaMap)
+        {
+            GetComponent<CapsuleCollider2D>().isTrigger = true;
         }
     }
 
@@ -98,9 +108,7 @@ public class Player : Character
                 {
                     ScanObject = scanObject; // ScanObject 변수에 저장
                     dialogManager.Talk(scanObject);
-                }
-
-                if (scanObject.CompareTag("Door"))
+                }else if (scanObject.CompareTag("Door"))
                 {
                     if (scanObject.name.Equals("OutDoor"))
                     {
@@ -108,7 +116,42 @@ public class Player : Character
                         GameManager.instance.preMap = MapName.BaseMap;
 
                         SceneLoadingManager.LoadScene("SeaMap");
+                    } else if (scanObject.name.Equals("GHDoor"))
+                    {
+                        transform.position = new Vector3(0.074f, 46.486f, 0);
+                        playerFarm.enabled = true;
+                        OpenFarmTool();
                     }
+                    else if (scanObject.name.Equals("MainDoor"))
+                    {
+                        transform.position = new Vector3(0.754f, 2.722f, 0);
+                        playerFarm.enabled = false;
+                        CloseFarmTool();
+                    }
+                }
+                else if (scanObject.CompareTag("FarmTool"))
+                {
+
+
+                    if (scanObject.name.Equals("Hoe"))
+                    {
+                        ChangeFarmTool(1);
+                        ChangeCurTool(1);
+                    }
+                    else if (scanObject.name.Equals("Water"))
+                    {
+                        ChangeFarmTool(2);
+                        ChangeCurTool(2);
+                    }
+                    else if (scanObject.name.Equals("Basket"))
+                    {
+                        ChangeFarmTool(3);
+                        ChangeCurTool(3);
+                    }
+                }
+                else if (scanObject.name.Equals("Box"))
+                {
+                    OpenBox();
                 }
             }
             else
