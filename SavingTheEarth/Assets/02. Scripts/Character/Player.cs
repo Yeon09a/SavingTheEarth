@@ -56,6 +56,11 @@ public class Player : Character
         {
             transform.position = DataManager.instance.nowPlayerData.playerPos;
         }
+        else if (GameManager.instance.preMap == MapName.SeaMap)
+        {
+            // SeaMap에 해당하는 초기 위치 설정 미해결
+            //transform.position = new Vector3(0f, -3.167668f, 0);
+        }
     }
 
     // override는 상속받은 클래스의 메소드 중에서 virtual로 선언된 부분을 재정의
@@ -94,12 +99,21 @@ public class Player : Character
             {
                 // 여기에서 상호작용
                 // hit.collider가 레이와 충돌한 오브젝트
+                ScanObject = scanObject;
                 scanObject = hit.collider.gameObject;
 
-                dialogManager.Talk(scanObject);
+                if (scanObject.CompareTag("ItemDialog"))
+                {
+                    ScanObject = scanObject; // ScanObject 변수에 저장
+                    dialogManager.Talk(scanObject);
+                }
             }
             else
+            {
+                ScanObject = null;
                 scanObject = null;
+            }
+
         }
         HandleLayers();
     }

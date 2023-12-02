@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 // abstract를 통한 추상 클래스 사용
 public abstract class Character : MonoBehaviour
@@ -31,6 +32,7 @@ public abstract class Character : MonoBehaviour
     // virtual을 통해서 상속 가능
     protected virtual void Update()
     {
+        
         HandleLayers();
     }
 
@@ -44,6 +46,16 @@ public abstract class Character : MonoBehaviour
     {
         // direction 값 0f일 시에 멈춤
         myRigidbody.velocity = direction.normalized * speed;
+        // 특정 씬에서는 y축 이동 금지
+        if (SceneManager.GetActiveScene().name == "SeaMap")
+        {
+            direction.y = 0f;
+            Rigidbody2D playerRigidbody = GetComponent<Rigidbody2D>();
+            if (playerRigidbody != null)
+            {
+                playerRigidbody.gravityScale = 10f;
+            }
+        }
     }
 
     public void HandleLayers()
