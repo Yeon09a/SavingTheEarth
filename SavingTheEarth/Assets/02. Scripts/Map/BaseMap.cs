@@ -11,6 +11,10 @@ public class BaseMap : MonoBehaviour
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
+
+        baseMapPanel.activateFace -= ActivateFace;
+        baseMapPanel.deactivateFace -= DeactivateFace;
+
         baseMapPanel.activateFace += ActivateFace;
         baseMapPanel.deactivateFace += DeactivateFace;
     }
