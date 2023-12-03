@@ -39,6 +39,8 @@ public class Player : Character
 
     GameObject scanObject; // 레이와 충돌한 오브젝트 저장
 
+    public BoxCollider2D moveCollider;
+
     public DialogManager dialogManager;
 
     public GameObject ScanObject { get; private set; } // scanObject를 외부에서 읽기 위한 프로퍼티
@@ -46,6 +48,23 @@ public class Player : Character
     protected override void Start()
     {
         base.Start();
+
+        if (GameManager.instance.curMap == MapName.SeaMap)
+        {
+            if (myRigidbody != null)
+            {
+                myRigidbody.gravityScale = 10f;
+            }
+
+            // MoveCollider 오브젝트의 박스 콜라이더를 찾아 비활성화
+            if (moveCollider != null)
+            {
+                if (moveCollider != null)
+                {
+                    moveCollider.enabled = false;
+                }
+            }
+        }
         
         if (GameManager.instance.preMap == MapName.Title)
         {
@@ -59,9 +78,12 @@ public class Player : Character
         {
             transform.position = new Vector3(-0.02f, -3.16f, 0);
             GetComponent<CapsuleCollider2D>().isTrigger = false;
+
         } else if (GameManager.instance.preMap == MapName.SeaMap)
         {
             GetComponent<CapsuleCollider2D>().isTrigger = true;
+            myRigidbody.gravityScale = 0f;
+            moveCollider.enabled = true;
         }
     }
 
