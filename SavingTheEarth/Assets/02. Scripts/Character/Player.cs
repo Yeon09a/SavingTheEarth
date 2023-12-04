@@ -123,14 +123,15 @@ public class Player : Character
             {
                 // 여기에서 상호작용
                 // hit.collider가 레이와 충돌한 오브젝트
-                ScanObject = scanObject;
-                scanObject = hit.collider.gameObject;
+                ScanObject = scanObject; // ScanObject 변수에 저장
+                dialogManager.Talk(scanObject);
 
-                if (scanObject.CompareTag("ItemDialog"))
-                {
-                    ScanObject = scanObject; // ScanObject 변수에 저장
-                    dialogManager.Talk(scanObject);
-                }else if (scanObject.CompareTag("Door"))
+                //if (scanObject.CompareTag("ItemDialog"))
+                //{
+                //    ScanObject = scanObject; // ScanObject 변수에 저장
+                //    dialogManager.Talk(scanObject);
+                //}
+                if (scanObject.CompareTag("Door"))
                 {
                     if (scanObject.name.Equals("OutDoor"))
                     {
@@ -153,8 +154,6 @@ public class Player : Character
                 }
                 else if (scanObject.CompareTag("FarmTool"))
                 {
-
-
                     if (scanObject.name.Equals("Hoe"))
                     {
                         ChangeFarmTool(1);
