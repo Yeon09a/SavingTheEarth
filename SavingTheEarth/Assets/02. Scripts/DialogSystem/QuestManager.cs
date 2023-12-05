@@ -80,10 +80,12 @@ public class QuestManager : MonoBehaviour
                     questObject[1].SetActive(true);
                 break;
             case 40:
+
+                convoManager.dialogData[1000] = new string[] {
+            "1. 식량 -> 온실\n2. 무기 -> 조종실 책상\n3. 침낭 -> 내 방\n4. 미니 잠수함 키 -> 교수님 방 책상/6"};
+
                 if (questActionIndex == 1)
                 {
-                    convoManager.dialogData.Add(1000, new string[] {
-            "1. 식량 -> 온실\n2. 무기 -> 조종실 책상\n3. 침낭 -> 내 방\n4. 미니 잠수함 키 -> 교수님 방 책상/6"});
                     questObject[1].SetActive(false);
                     questObject[2].SetActive(true);
                 }
