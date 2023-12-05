@@ -13542,6 +13542,10 @@ PrefabInstance:
       propertyPath: dialogManager
       value: 
       objectReference: {fileID: 62891987}
+    - target: {fileID: 433309964014529842, guid: 8b008e418a60c0a4d961eb66a6f17409, type: 3}
+      propertyPath: weaponAnimatorController
+      value: 
+      objectReference: {fileID: 9100000, guid: ab7ffb113dd3d544ca03df35541c4a60, type: 2}
     - target: {fileID: 4436922885810873823, guid: 8b008e418a60c0a4d961eb66a6f17409, type: 3}
       propertyPath: m_Layer
       value: 3
@@ -13558,6 +13562,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 7556416390855978272, guid: 8b008e418a60c0a4d961eb66a6f17409, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 314a0f7bbfb1f924d835cefa89510888, type: 2}
     - target: {fileID: 7632578048462231462, guid: 8b008e418a60c0a4d961eb66a6f17409, type: 3}
       propertyPath: m_RootOrder
       value: 8
@@ -23445,6 +23453,54 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!58 &6177566597557798408
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6177566597557798410}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.2313568, y: -0.031692654}
+  serializedVersion: 2
+  m_Radius: 0.17356262
+--- !u!4 &6177566597557798409
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6177566597557798410}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 237418078}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &6177566597557798410
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6177566597557798409}
+  - component: {fileID: 6177566597557798408}
+  m_Layer: 3
+  m_Name: WeaponColl
+  m_TagString: Weapon
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
 --- !u!114 &6253902638004807476
 MonoBehaviour:
   m_ObjectHideFlags: 0

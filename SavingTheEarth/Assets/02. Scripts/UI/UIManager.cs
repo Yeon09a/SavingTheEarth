@@ -54,7 +54,7 @@ public class UIManager : MonoBehaviour
 
     private float oriPosY;
 
-
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -198,8 +198,7 @@ public class UIManager : MonoBehaviour
         if (toolNum != 3)
         {
             toolCount.gameObject.SetActive(false);
-        }
-        else
+        } else
         {
             toolCount.gameObject.SetActive(true);
             toolCount.text = (DataManager.instance.nowPlayerData.haveItems.ContainsKey(6) ? DataManager.instance.nowPlayerData.haveItems[6].count : 0).ToString();
