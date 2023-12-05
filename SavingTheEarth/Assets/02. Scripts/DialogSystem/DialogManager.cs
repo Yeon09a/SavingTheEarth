@@ -22,7 +22,7 @@ public class DialogManager : MonoBehaviour
 
     private void Start()
     {
-        Debug.Log(questManager.CheckQuest());
+       
     }
 
     public void SenceObject(GameObject scanObj)
