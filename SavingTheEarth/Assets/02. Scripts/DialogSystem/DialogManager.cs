@@ -30,7 +30,7 @@ public class DialogManager : MonoBehaviour
         scanObject = scanObj;
     }
 
-    public void Talk() // 대화 시작시 호출될 함수
+    /*public void Talk() // 대화 시작시 호출될 함수
     {
         if (scanObject != null)
         {
@@ -43,6 +43,24 @@ public class DialogManager : MonoBehaviour
         }
 
         dialogBox.SetActive(isTalk); // 대화창 팝업
+    }*/
+
+    public void Talk() // 대화 시작시 호출될 함수
+    {
+        if (scanObject != null)
+        {
+            if (scanObject.name.Equals("Start"))
+            {
+                Conversation(50000, false);
+            }
+            else
+            {
+                ObjectData objData = scanObject.GetComponent<ObjectData>();
+                Conversation(objData.id, objData.isNPC);
+            }
+        }
+
+        dialogBox.SetActive(isTalk); // 대화창 팝업
     }
 
     void Conversation(int id, bool isNPC)
@@ -52,6 +70,7 @@ public class DialogManager : MonoBehaviour
 
         if (dialogData == null) // 대화가 종료됐을 때
         {
+            scanObject = null;
             isTalk = false;
             dialogIndex = 0; // 대사 인덱스 초기화
             Debug.Log(questManager.CheckQuest(id)); // 다음 퀘스트로 넘어가기
@@ -88,12 +107,15 @@ public class DialogManager : MonoBehaviour
     {
         if (scanObject != null)
         {
-            ObjectData objData = scanObject.GetComponent<ObjectData>();
-            Conversation(objData.id, objData.isNPC);
-        }
-        else
-        {
-            Conversation(50000, false);
+            if (scanObject.name.Equals("Start"))
+            {
+                Conversation(50000, false);
+            }
+            else
+            {
+                ObjectData objData = scanObject.GetComponent<ObjectData>();
+                Conversation(objData.id, objData.isNPC);
+            }
         }
 
         dialogBox.SetActive(isTalk); // 대화창 팝업

@@ -44,7 +44,6 @@ public class Player : Character
 
     public DialogManager dialogManager;
 
-    public GameObject ScanObject { get; private set; } // scanObject를 외부에서 읽기 위한 프로퍼티
 
     protected override void Start()
     {
@@ -72,6 +71,9 @@ public class Player : Character
         if (GameManager.instance.preMap == MapName.Title)
         {
             transform.position = new Vector3(12.63f, 3.3f, 0);
+            scanObject = GameObject.Find("Start");
+            Debug.Log(scanObject.name);
+            dialogManager.SenceObject(scanObject);
             dialogManager.Talk();
         }
         else if (GameManager.instance.preMap == MapName.SaveTitle)
@@ -102,8 +104,6 @@ public class Player : Character
         if (Input.GetKeyDown(KeyCode.E)) // 상호작용 키
         {
 
-
-            ScanObject = scanObject; // ScanObject 변수에 저장
 
             if (playerDir == PlayerDir.Down) // 방향이 아래인 경우
             {
@@ -186,7 +186,6 @@ public class Player : Character
             }
             else
             {
-                ScanObject = null;
                 scanObject = null;
             }
 
