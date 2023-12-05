@@ -33,34 +33,63 @@ public class SceneLoadingManager : MonoBehaviour
         yield return null;
 
         // 비동기 씬 이동
-        AsyncOperation op1 = SceneManager.LoadSceneAsync("Player", LoadSceneMode.Additive);
-        AsyncOperation op2 = SceneManager.LoadSceneAsync(nextScene, LoadSceneMode.Additive);
-
-        // 씬 비활성화
-        op1.allowSceneActivation = false;
-        op2.allowSceneActivation = false;
-
-        while (!op1.isDone && !op2.isDone)
+        if (nextScene != "Title")
         {
-            yield return null;
+            AsyncOperation op1 = SceneManager.LoadSceneAsync("Player", LoadSceneMode.Additive);
+            AsyncOperation op2 = SceneManager.LoadSceneAsync(nextScene, LoadSceneMode.Additive);
 
-            // 로딩 바 업데이트
-            float op1Value = Mathf.Lerp(0, fullSize, op1.progress);
-            float op2Value = Mathf.Lerp(0, fullSize, op2.progress);
+            // 씬 비활성화
+            op1.allowSceneActivation = false;
+            op2.allowSceneActivation = false;
 
-            progressBarRt.sizeDelta = new Vector2(op1Value + op2Value , 40);
-
-            if (op1.progress >= 0.9f && op2.progress >= 0.9f) // 로딩 완료 시
+            while (!op1.isDone && !op2.isDone)
             {
-                progressBarRt.sizeDelta = new Vector2(fullSize * 2, 40);
+                yield return null;
 
-                yield return new WaitForSeconds(0.5f);
+                // 로딩 바 업데이트
+                float op1Value = Mathf.Lerp(0, fullSize, op1.progress);
+                float op2Value = Mathf.Lerp(0, fullSize, op2.progress);
 
-                // 씬 활성화
-                op1.allowSceneActivation = true;
-                op2.allowSceneActivation = true;
+                progressBarRt.sizeDelta = new Vector2(op1Value + op2Value, 40);
+
+                if (op1.progress >= 0.9f && op2.progress >= 0.9f) // 로딩 완료 시
+                {
+                    progressBarRt.sizeDelta = new Vector2(fullSize * 2, 40);
+
+                    yield return new WaitForSeconds(0.5f);
+
+                    // 씬 활성화
+                    op1.allowSceneActivation = true;
+                    op2.allowSceneActivation = true;
+                }
+            }
+        } else
+        {
+            AsyncOperation op2 = SceneManager.LoadSceneAsync(nextScene, LoadSceneMode.Additive);
+
+            op2.allowSceneActivation = false;
+
+            while (!op2.isDone)
+            {
+                yield return null;
+
+                // 로딩 바 업데이트
+                float op2Value = Mathf.Lerp(0, fullSize, op2.progress);
+
+                progressBarRt.sizeDelta = new Vector2(op2Value, 40);
+
+                if (op2.progress >= 0.9f) // 로딩 완료 시
+                {
+                    progressBarRt.sizeDelta = new Vector2(fullSize * 2, 40);
+
+                    yield return new WaitForSeconds(0.5f);
+
+                    // 씬 활성화
+                    op2.allowSceneActivation = true;
+                }
             }
         }
+        
 
         SceneManager.UnloadSceneAsync("Loading"); // 로딩 씬 종료
     }

@@ -4,36 +4,49 @@ using UnityEngine;
 
 public class AttackBeam : MonoBehaviour
 {
-    public Vector3 pos;
-
-    // pos 설정할 수 있는 범위 설정하기
-    
     public GameObject target;
     public GameObject beam;
 
     private bool isBeam = false;
+    private bool offBeam = false;
 
     public MiddleOctMonster mOctMon;
 
-    private void Start()
+    private void Awake()
     {
         mOctMon.startBeamAnimation += StartBeamAnimation;
+    }
+
+    private void Start()
+    {
         
         // pos 위치 초기화 하기
         
+    }
+
+    private void OnEnable()
+    {
         
-        transform.position = pos;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (isBeam) // 임시 애니메이션
+        if (isBeam)
         {
-            beam.transform.Translate(0, -1, 0);
-            if(beam.transform.localPosition.y <= 5.0f)
+            beam.transform.Translate(0, -0.5f, 0);
+            if(beam.transform.localPosition.y <= 3.72f)
             {
                 isBeam = false;
+            }
+        }
+
+        if (offBeam)
+        {
+            beam.transform.Translate(0, 0.2f, 0);
+            if (beam.transform.localPosition.y >= 16f)
+            {
+                offBeam = false;
             }
         }
     }
@@ -58,13 +71,14 @@ public class AttackBeam : MonoBehaviour
         beam.transform.localPosition = new Vector3(0, 16, 0);
 
         yield return new WaitForSeconds(3.0f);
-        this.gameObject.SetActive(false);
-    }
+        offBeam = true;
 
-    private void BeamAnim() // 빔 애니메이션 관리 함수 // 후에 수정
-    {
-        // 임시 애니메이션
-        
+        yield return new WaitForSeconds(3.0f);
+
+        beam.transform.localPosition = new Vector3(0, 16, 0);
+
+
+        this.gameObject.SetActive(false);
     }
 
     private void OnDisable()

@@ -22,6 +22,7 @@ public enum MapName
 
 public class Player : Character
 {
+    public RuntimeAnimatorController weaponAnimatorController;
 
     public PlayerDir playerDir = PlayerDir.Down; // 플레이어 현재 방향
 
@@ -51,6 +52,8 @@ public class Player : Character
 
         if (GameManager.instance.curMap == MapName.SeaMap)
         {
+            myAnimator.runtimeAnimatorController = weaponAnimatorController;
+
             if (myRigidbody != null)
             {
                 myRigidbody.gravityScale = 10f;
@@ -189,6 +192,23 @@ public class Player : Character
 
             dialogManager.Talk();
 
+        }
+        else if (Input.GetKeyDown(KeyCode.F))
+        {
+
+            if (GameManager.instance.curMap != MapName.BaseMap)
+            {
+                if (playerDir == PlayerDir.Right) // 방향이 오른쪽일 경우
+                {
+                    myAnimator.SetTrigger("AttackRight");
+                    SetSpeed(0);
+                }
+                else if (playerDir == PlayerDir.Left) // 방향이 왼쪽일 경우
+                {
+                    myAnimator.SetTrigger("AttackLeft");
+                    SetSpeed(0);
+                }
+            }
         }
         HandleLayers();
     }

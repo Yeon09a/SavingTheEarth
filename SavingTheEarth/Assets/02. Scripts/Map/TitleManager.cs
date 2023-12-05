@@ -23,6 +23,7 @@ public class TitleManager : MonoBehaviour
     public TMP_InputField playerNameInput; // 플레이어 이름 
     public Button okayBtn; // 확인 버튼
     public Button newBackBtn; // 새 게임 판넬 뒤로가기
+    private bool isOpen = false;
 
     // 이어하기 판넬 관련
     public Button loadBackBtn; // 세이브 판넬 뒤로가기
@@ -45,6 +46,14 @@ public class TitleManager : MonoBehaviour
 
             SceneLoadingManager.LoadScene("BaseMap");
         }
+
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            if (isOpen)
+            {
+                CloseDialog();
+            }
+        }
     }
 
     // Start is called before the first frame update
@@ -57,6 +66,7 @@ public class TitleManager : MonoBehaviour
         newBackBtn.onClick.AddListener(ClickNewBackBtn);
         loadBackBtn.onClick.AddListener(ClickLoadBackBtn);
         saveInfoOkayBtn.onClick.AddListener(SaveCheckOkayBtn);
+        dialogBox.GetComponent<Button>().onClick.AddListener(CloseDialog);
 
         path = Application.dataPath + "/09. Data/";
     }
@@ -92,13 +102,16 @@ public class TitleManager : MonoBehaviour
         TitleDialog titleDialog = dialogBox.GetComponentInParent<TitleDialog>();
         if (string.IsNullOrEmpty(playerName) || string.IsNullOrWhiteSpace(playerName))
         {
+            isOpen = true;
             bg.SetActive(true);
             dialogBox.SetActive(true);
             titleDialog.SetDialogName("");
             titleDialog.SetDialogContent(0, "이름을 입력해주십시오.");
 
+
         } else
         {
+            isOpen = true;
             bg.SetActive(true);
             dialogBox.SetActive(true);
             titleDialog.SetDialogName("");
@@ -115,6 +128,13 @@ public class TitleManager : MonoBehaviour
         startPanel.SetActive(true); // 버튼 모음 활성화
         playerNameInput.text = "";
         newGamePanel.SetActive(false);
+    }
+
+    private void CloseDialog()
+    {
+        isOpen = false;
+        bg.SetActive(false);
+        dialogBox.SetActive(false);
     }
     #endregion
 
@@ -176,6 +196,7 @@ public class TitleManager : MonoBehaviour
         }
         else
         {
+            isOpen = false;
             deleteSelect();
             bg.SetActive(false);
             dialogBox.SetActive(false);
