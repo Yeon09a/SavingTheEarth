@@ -221,6 +221,13 @@ public class Player : Character
         {
             playerDir = PlayerDir.Left;
         }
+
+
+        // 달리기
+        if (Input.GetKey(KeyCode.LeftShift))
+            speed = 5;
+        else
+            speed = 3;
     }
 
     // 마우스 상호작용 추가하기
