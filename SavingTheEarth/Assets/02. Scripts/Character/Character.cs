@@ -9,7 +9,7 @@ public abstract class Character : MonoBehaviour
 {
     // ¿ŒΩ∫∆Â≈Õ√¢ø° ∫∏ø©¡¸
     [SerializeField]
-    private float speed;
+    public float speed;
     public float hp;
     protected Vector2 direction;
     protected Animator myAnimator;

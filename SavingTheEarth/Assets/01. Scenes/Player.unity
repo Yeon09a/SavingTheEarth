@@ -2829,6 +2829,7 @@ MonoBehaviour:
   - {fileID: 442063089}
   - {fileID: 877245898}
   inventoryManager: {fileID: 124518562}
+  convoManager: {fileID: 1629570506}
 --- !u!4 &302879426
 Transform:
   m_ObjectHideFlags: 0
@@ -14781,7 +14782,7 @@ Camera:
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 127
+    m_Bits: 639
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
