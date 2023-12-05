@@ -23,6 +23,7 @@ public class QuestManager : MonoBehaviour
         inventoryManager = GetComponent<InventoryManager>(); // 초기화
 
         GenerateData();
+        questObject[6].SetActive(true);
     }
 
     void GenerateData() // 퀘스트 데이터 생성
@@ -69,7 +70,10 @@ public class QuestManager : MonoBehaviour
         {
             case 10:
                 if (questActionIndex == 1)
+                {
+                    questObject[6].SetActive(false);
                     questObject[0].SetActive(true); // 칠판 위에 느낌표 띄우기
+                }
                 break;
             case 20:
                 if (questActionIndex == 1)
