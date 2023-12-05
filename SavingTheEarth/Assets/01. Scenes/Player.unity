@@ -2829,6 +2829,7 @@ MonoBehaviour:
   - {fileID: 442063089}
   - {fileID: 877245898}
   inventoryManager: {fileID: 124518562}
+  convoManager: {fileID: 1629570506}
 --- !u!4 &302879426
 Transform:
   m_ObjectHideFlags: 0
