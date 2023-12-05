@@ -42,9 +42,9 @@ public class ConversationManager : MonoBehaviour
         });
 
         // 기본 대사
-        //dialogData.Add(1000, new string[] {
-        //    "이동: WASD 또는 방향키\n달리기: shift\n아이템 상호작용: e 또는 마우스\n인벤토리 선택: 숫자 1 ~ 5/6"
-        //});
+        dialogData.Add(1000, new string[] {
+            "이동: WASD 또는 방향키\n달리기: shift\n아이템 상호작용: e 또는 마우스\n인벤토리 선택: 숫자 1 ~ 5/6"
+        });
         dialogData.Add(2000, new string[] {
             "아무리 생각해도 보드 하나로는 부족해\n개인 보드 하나 놔달라고 말해봐야겠군/2"
         });
