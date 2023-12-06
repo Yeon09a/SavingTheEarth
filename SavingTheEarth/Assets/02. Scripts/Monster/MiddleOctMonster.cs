@@ -36,11 +36,14 @@ public class MiddleOctMonster : MonoBehaviour
 
     public float speed;
 
+    [SerializeField]
+    private UIManager uiMng;
+
     // Start is called before the first frame update
     void Start()
     {
-        StartAttack();
-
+        //StartAttack();
+        uiMng = GameObject.FindWithTag("UIManager").GetComponent<UIManager>();
 
     }
 
@@ -50,9 +53,10 @@ public class MiddleOctMonster : MonoBehaviour
         {
             attackCount++;
 
-            if(attackCount < 4)
+            if(attackCount < 2)
             {
                 attackNum = Random.Range(1, 3);
+                //attackNum = 1;
                 if (attackNum == 1)
                 {
                     ShootBeam();
@@ -82,6 +86,7 @@ public class MiddleOctMonster : MonoBehaviour
     {
         Debug.Log("¸Ô¹° ±âµÕ");
         int j = Random.Range(0, 4);
+        startBeamAnimation = null;
         for (int i = 0; i < maxBeam; i++)
         {
             if (i != j)
@@ -89,7 +94,6 @@ public class MiddleOctMonster : MonoBehaviour
                 beams[i].SetActive(true);
             }
         }
-
         startBeamAnimation();
     }
 
@@ -119,6 +123,14 @@ public class MiddleOctMonster : MonoBehaviour
             tf2.Translate(-1 * Vector3.right);
 
             yield return new WaitForSeconds(0.05f);
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Weapon"))
+        {
+            Debug.Log("°ø°Ý ¹ÞÀ½");
         }
     }
 }

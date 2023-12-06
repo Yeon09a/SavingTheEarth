@@ -52,6 +52,7 @@ public class Player : Character
         if (GameManager.instance.curMap == MapName.SeaMap)
         {
             myAnimator.runtimeAnimatorController = weaponAnimatorController;
+            Camera.main.transform.localPosition = new Vector3(0, 2.12f, -10);
 
             if (myRigidbody != null)
             {

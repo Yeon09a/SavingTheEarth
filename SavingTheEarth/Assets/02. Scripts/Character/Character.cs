@@ -101,9 +101,9 @@ public abstract class Character : MonoBehaviour
     }
 
     // 애니메이터 setter
-    public void SetAnimator(bool b)
+    public void SetAnimator(bool b, string anim)
     {
         myAnimator.enabled = b;
-        myAnimator.Play("idle_Up", 0);
+        myAnimator.Play(anim, 0);
     }
 }

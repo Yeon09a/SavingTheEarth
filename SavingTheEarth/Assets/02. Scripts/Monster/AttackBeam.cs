@@ -12,9 +12,11 @@ public class AttackBeam : MonoBehaviour
 
     public MiddleOctMonster mOctMon;
 
+    public float speed = 3f;
+
     private void Awake()
     {
-        mOctMon.startBeamAnimation += StartBeamAnimation;
+        
     }
 
     private void Start()
@@ -26,7 +28,7 @@ public class AttackBeam : MonoBehaviour
 
     private void OnEnable()
     {
-        
+        mOctMon.startBeamAnimation += StartBeamAnimation;
     }
 
     // Update is called once per frame
@@ -34,7 +36,7 @@ public class AttackBeam : MonoBehaviour
     {
         if (isBeam)
         {
-            beam.transform.Translate(0, -0.5f, 0);
+            beam.transform.Translate(new Vector3(0, -0.5f, 0) * Time.deltaTime * speed);
             if(beam.transform.localPosition.y <= 3.72f)
             {
                 isBeam = false;
@@ -43,7 +45,7 @@ public class AttackBeam : MonoBehaviour
 
         if (offBeam)
         {
-            beam.transform.Translate(0, 0.2f, 0);
+            beam.transform.Translate(new Vector3(0, 0.2f, 0) * Time.deltaTime * speed);
             if (beam.transform.localPosition.y >= 16f)
             {
                 offBeam = false;
@@ -76,14 +78,12 @@ public class AttackBeam : MonoBehaviour
         yield return new WaitForSeconds(3.0f);
 
         beam.transform.localPosition = new Vector3(0, 16, 0);
-
-
         this.gameObject.SetActive(false);
     }
 
     private void OnDisable()
     {
-        
+
     }
 
     private void OnDestroy()

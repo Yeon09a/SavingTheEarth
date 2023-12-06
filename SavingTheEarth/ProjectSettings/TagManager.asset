@@ -15,6 +15,9 @@ TagManager:
   - FarmTool
   - ItemDialog
   - BaseFace
+  - Weapon
+  - MapControl
+  - UIManager
   layers:
   - Default
   - TransparentFX

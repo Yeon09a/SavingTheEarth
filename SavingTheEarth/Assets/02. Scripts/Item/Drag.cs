@@ -60,7 +60,7 @@ public class Drag : MonoBehaviour, IPointerDownHandler, IDragHandler, IBeginDrag
             {
                 this.transform.SetParent(oriParentTr);
             }
-            
+
         }
     }
 }

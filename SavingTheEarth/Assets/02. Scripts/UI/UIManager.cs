@@ -47,6 +47,14 @@ public class UIManager : MonoBehaviour
 
     public GameObject box; // 상자UI
 
+    public GameObject bossPanel;
+    public TextMeshProUGUI bossName;
+    public GameObject bossInfo;
+    public TextMeshProUGUI bossInfoName;
+    public TextMeshProUGUI bossInfoAttack;
+
+    public RectTransform hpBar;
+
 
     public Player player; // 플레이어
     public PlayerFarm playerFarm;
@@ -54,7 +62,9 @@ public class UIManager : MonoBehaviour
 
     private float oriPosY;
 
-    
+    public delegate void BossDel();
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -241,4 +251,45 @@ public class UIManager : MonoBehaviour
         inventoryPanel.SetActive(false);
         box.SetActive(false);
     }
+
+    public void OpenBossPanel(string name, string info, BossDel startAttack)
+    {
+        bossPanel.SetActive(true);
+        bossName.text = name;
+        bossInfoName.text = name + " 등장";
+        bossInfoAttack.text = info;
+
+        StartCoroutine(CloseBossInfo(startAttack));
+    }
+
+    IEnumerator CloseBossInfo(BossDel startAttack)
+    {
+        yield return new WaitForSeconds(3f);
+
+        bossInfo.SetActive(false);
+        startAttack();
+    }
+
+    public void CloseBossPanel()
+    {
+        bossInfo.SetActive(true);
+        bossPanel.SetActive(false);
+    }
+
+    public bool UpdateBossHp(float full, float hp, float attack)
+    {
+        float left = hp - attack;
+        if (left > 0.000001f)
+        {
+            float ratio = left / full;
+            float value = Mathf.Lerp(0, 800, ratio);
+            hpBar.sizeDelta = new Vector2(value, 20f);
+            return true;
+        } else
+        {
+            hpBar.sizeDelta = new Vector2(0, 20f);
+            return false;
+        }
+
+    } 
 }

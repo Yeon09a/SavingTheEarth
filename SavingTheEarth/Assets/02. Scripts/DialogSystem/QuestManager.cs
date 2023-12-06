@@ -20,7 +20,6 @@ public class QuestManager : MonoBehaviour
     void Start()
     {
         questList = new Dictionary<int, QuestData>(); // 초기화
-        inventoryManager = GetComponent<InventoryManager>(); // 초기화
 
         GenerateData();
         questObject[6].SetActive(true);
