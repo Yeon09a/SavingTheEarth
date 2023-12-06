@@ -59,6 +59,7 @@ public class UIManager : MonoBehaviour
     public Player player; // 플레이어
     public PlayerFarm playerFarm;
     public ShopManager shopMng;
+    public RectTransform playerHpBar;
 
     private float oriPosY;
 
@@ -75,6 +76,7 @@ public class UIManager : MonoBehaviour
         playerFarm.SetSeedCount -= SetToolCount;
         playerFarm.OnFarmInfo -= OnFarmInfo;
         player.OpenBox -= SetBox;
+        player.UpdatePlayerHp -= UpdatePlayerHp;
 
         inventoryBtn.onClick.RemoveAllListeners();
         itemTgl.onValueChanged.RemoveAllListeners();
@@ -96,6 +98,7 @@ public class UIManager : MonoBehaviour
         playerFarm.SetSeedCount += SetToolCount;
         playerFarm.OnFarmInfo += OnFarmInfo;
         player.OpenBox += SetBox;
+        player.UpdatePlayerHp += UpdatePlayerHp;
 
         // UI 리스너 연결
         inventoryBtn.onClick.AddListener(SetInventory);
@@ -211,7 +214,7 @@ public class UIManager : MonoBehaviour
         } else
         {
             toolCount.gameObject.SetActive(true);
-            toolCount.text = (DataManager.instance.nowPlayerData.haveItems.ContainsKey(6) ? DataManager.instance.nowPlayerData.haveItems[6].count : 0).ToString();
+            toolCount.text = (DataManager.instance.nowPlayerData.haveItems.ContainsKey(8) ? DataManager.instance.nowPlayerData.haveItems[8].count : 0).ToString();
             playerFarm.seedCount = int.Parse(toolCount.text);
         }
     }
@@ -278,7 +281,7 @@ public class UIManager : MonoBehaviour
         bossPanel.SetActive(false);
     }
 
-    public bool UpdateBossHp(float full, float hp, float attack)
+    public float UpdateBossHp(float full, float hp, float attack)
     {
         float left = hp - attack;
         if (left > 0.000001f)
@@ -286,12 +289,29 @@ public class UIManager : MonoBehaviour
             float ratio = left / full;
             float value = Mathf.Lerp(0, 800, ratio);
             hpBar.sizeDelta = new Vector2(value, 20f);
-            return true;
+            return left;
         } else
         {
             hpBar.sizeDelta = new Vector2(0, 20f);
-            return false;
+            return -1f;
         }
 
     } 
+
+    public float UpdatePlayerHp(float full, float hp, float attack)
+    {
+        float left = hp - attack;
+        if (left > 0.000001f)
+        {
+            float ratio = left / full;
+            float value = Mathf.Lerp(0, 500, ratio);
+            playerHpBar.sizeDelta = new Vector2(value, 40f);
+            return left;
+        }
+        else
+        {
+            playerHpBar.sizeDelta = new Vector2(0, 40f);
+            return -1f;
+        }
+    }
 }

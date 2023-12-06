@@ -127,7 +127,7 @@ public class ShopManager : MonoBehaviour
     {
         if (money >= price)
         {
-            bool isNotFull = invenMng.PutItem(selectedItem.id, count);
+            bool isNotFull = invenMng.PutItem(selectedItem.id, count, 0);
             if (isNotFull)
             {
                 money -= price;

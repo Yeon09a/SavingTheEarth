@@ -1245,10 +1245,11 @@ MonoBehaviour:
   bossInfo: {fileID: 1411512188}
   bossInfoName: {fileID: 1565476404}
   bossInfoAttack: {fileID: 1756344526}
-  hpBar: {fileID: 0}
+  hpBar: {fileID: 1271282517}
   player: {fileID: 1508880931}
   playerFarm: {fileID: 1628104262}
   shopMng: {fileID: 1485560597}
+  playerHpBar: {fileID: 5748378482677309920}
 --- !u!114 &124518562
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14324,9 +14325,21 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 433309964014529842, guid: 8b008e418a60c0a4d961eb66a6f17409, type: 3}
+      propertyPath: hp
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 433309964014529842, guid: 8b008e418a60c0a4d961eb66a6f17409, type: 3}
       propertyPath: speed
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 433309964014529842, guid: 8b008e418a60c0a4d961eb66a6f17409, type: 3}
+      propertyPath: fullHp
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 433309964014529842, guid: 8b008e418a60c0a4d961eb66a6f17409, type: 3}
+      propertyPath: monDic
+      value: 
+      objectReference: {fileID: 11400000, guid: 48e69933f199ba94fbcc7df711c3ff2a, type: 2}
     - target: {fileID: 433309964014529842, guid: 8b008e418a60c0a4d961eb66a6f17409, type: 3}
       propertyPath: playerFarm
       value: 
@@ -24337,11 +24350,11 @@ RectTransform:
   m_Father: {fileID: 7983933512231743131}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_AnchorMin: {x: 0, y: 0.5}
+  m_AnchorMax: {x: 0, y: 0.5}
+  m_AnchoredPosition: {x: -0.0007324219, y: 0}
+  m_SizeDelta: {x: 500, y: 40}
+  m_Pivot: {x: 0, y: 0.5}
 --- !u!1 &5751229606100962040
 GameObject:
   m_ObjectHideFlags: 0
@@ -24454,7 +24467,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: 359, y: -14}
+  m_AnchoredPosition: {x: 402, y: -14}
   m_SizeDelta: {x: 500, y: 40}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &5966186935163587702
@@ -25187,7 +25200,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: 359, y: 26}
+  m_AnchoredPosition: {x: 402.0005, y: 26}
   m_SizeDelta: {x: 500, y: 40}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &8034541018640595344

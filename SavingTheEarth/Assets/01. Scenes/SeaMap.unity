@@ -12107,7 +12107,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1333851051}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 164.05, y: -6.07, z: 0}
+  m_LocalPosition: {x: 162.98, y: -6.07, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -12352,8 +12352,7 @@ EdgeCollider2D:
   - {x: 144.969, y: -4.847779}
   - {x: 146.80243, y: -4.9082947}
   - {x: 150.4762, y: -6.3535385}
-  - {x: 169.04243, y: -6.570277}
-  - {x: 171.89171, y: -4.8133636}
+  - {x: 171.83147, y: -6.4587154}
   - {x: 171.8723, y: 0.46477914}
   - {x: 173.04713, y: 0.8643942}
   - {x: 172.90791, y: -9.345488}
@@ -13598,6 +13597,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1483959358}
+  - component: {fileID: 1483959361}
   - component: {fileID: 1483959360}
   - component: {fileID: 1483959359}
   m_Layer: 0
@@ -13657,7 +13657,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a47c76fd930f194c8686455bfaaab40, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  octMon: {fileID: 0}
+  octMon: {fileID: 11400000, guid: c138723d978c248428766f0889505445, type: 2}
   beams:
   - {fileID: 2004971670}
   - {fileID: 398285148}
@@ -13675,6 +13675,21 @@ MonoBehaviour:
   legAnimator: {fileID: 1351494585}
   speed: 0.001
   uiMng: {fileID: 0}
+  limit: {fileID: 0}
+--- !u!114 &1483959361
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1483959357}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eeb65ec07f3188a41a4139aa9d81fe95, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  id: 0
+  num: 0
 --- !u!1 &1485427988
 GameObject:
   m_ObjectHideFlags: 0

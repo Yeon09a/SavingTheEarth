@@ -17,11 +17,14 @@ public enum MapName
     SaveTitle,
     Title,
     BaseMap,
-    SeaMap
+    SeaMap,
+    Test
 }
 
 public class Player : Character
 {
+    public MonsterDic monDic;
+    
     public RuntimeAnimatorController weaponAnimatorController;
 
     public PlayerDir playerDir = PlayerDir.Down; // 플레이어 현재 방향
@@ -37,6 +40,7 @@ public class Player : Character
     public Action<int> ChangeFarmTool; // 농사 도구 바꾸기
     public Action<int> ChangeCurTool; // 농사 도구 Num
     public PlayerFarm playerFarm;
+    public Func<float, float, float, float> UpdatePlayerHp;
 
     GameObject scanObject; // 레이와 충돌한 오브젝트 저장
 
@@ -93,6 +97,10 @@ public class Player : Character
             GetComponent<CapsuleCollider2D>().isTrigger = true;
             myRigidbody.gravityScale = 0f;
             moveCollider.enabled = true;
+        } else if (GameManager.instance.preMap == MapName.Test)
+        {
+            transform.position = new Vector3(137.82f, 0.11f, 0);
+            GetComponent<CapsuleCollider2D>().isTrigger = false;
         }
     }
 
@@ -202,12 +210,12 @@ public class Player : Character
                 if (playerDir == PlayerDir.Right) // 방향이 오른쪽일 경우
                 {
                     myAnimator.SetTrigger("AttackRight");
-                    SetSpeed(0);
+                    speed = 0;
                 }
                 else if (playerDir == PlayerDir.Left) // 방향이 왼쪽일 경우
                 {
                     myAnimator.SetTrigger("AttackLeft");
-                    SetSpeed(0);
+                    speed = 0;
                 }
             }
         }
@@ -257,6 +265,31 @@ public class Player : Character
 
     // 마우스 상호작용 추가하기
 
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("MonsterAttack"))
+        {
+            MonsterAttack ma = collision.GetComponent<MonsterAttack>();
+            float attack = monDic.monsters[ma.id].damage[ma.num];
+            hp = UpdatePlayerHp(fullHp, hp, attack);
 
+            if (hp != -1f)
+            {
+                StartCoroutine(BeAttacked());
+            } else
+            {
+                Debug.Log("게임 오버");
+            }
+
+
+        }
+    }
+
+    IEnumerator BeAttacked()
+    {
+        transform.GetComponent<SpriteRenderer>().color = new Color(255 / 255f, 133 / 255f, 133 / 255f);
+        yield return new WaitForSeconds(0.5f);
+        transform.GetComponent<SpriteRenderer>().color = Color.white;
+    }
 
 }
