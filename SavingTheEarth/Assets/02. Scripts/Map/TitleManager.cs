@@ -41,10 +41,20 @@ public class TitleManager : MonoBehaviour
         // 임시 이동
         if (Input.GetKeyDown(KeyCode.F5))
         {
+            DataManager.instance.PlayNewData();
+            DataManager.instance.nowPlayerData.playerName = "rescue";
             GameManager.instance.curMap = MapName.BaseMap;
             GameManager.instance.preMap = MapName.Title;
 
             SceneLoadingManager.LoadScene("BaseMap");
+        } else if(Input.GetKeyDown(KeyCode.F6))
+        {
+            DataManager.instance.PlayNewData();
+            DataManager.instance.nowPlayerData.playerName = "rescue";
+            GameManager.instance.curMap = MapName.SeaMap;
+            GameManager.instance.preMap = MapName.BaseMap;
+
+            SceneLoadingManager.LoadScene("SeaMap");
         }
 
         if (Input.GetKeyDown(KeyCode.E))

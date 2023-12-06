@@ -95,6 +95,7 @@ public class InventoryManager : MonoBehaviour
         checkItemList = new bool[5];
         checkItem = new bool[15];
         checkPItem = new bool[15];
+        checkBItem = new bool[25];
     }
 
     // Start is called before the first frame update
@@ -140,10 +141,12 @@ public class InventoryManager : MonoBehaviour
         GameObject icon = Instantiate(itemIcon, slots[index].transform.position, Quaternion.identity);
         // icon 속성 설정(itemicon으로 이동)
         icon.GetComponent<ItemIcon>().itemInfo = items.items[id];
+        icon.GetComponent<ItemIcon>().SetItemImage();
         icon.transform.SetParent(slots[index].transform.GetChild(0));
+        icon.GetComponent<RectTransform>().localScale = new Vector3(1, 1, 1);
         checkSlots[index] = true;
 
-        icon.GetComponentInChildren<TextMeshProUGUI>().text = count.ToString();
+        icon.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = count.ToString();
     }
 
     private int CheckHaveItem(int id) // 아이템을 현재 가지고 있는지 확인
@@ -256,8 +259,9 @@ public class InventoryManager : MonoBehaviour
         GameObject icon = Instantiate(itemIcon, slots[index].transform.position, Quaternion.identity);
         // icon 속성 설정(itemicon으로 이동)
         icon.GetComponent<ItemIcon>().itemInfo = items.items[id];
-        slots[index].transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = count.ToString();
+        icon.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = count.ToString();
         icon.transform.SetParent(slots[index].transform.GetChild(0));
+        icon.GetComponent<RectTransform>().localScale = new Vector3(1, 1, 1);
         checkSlots[index] = true;
         DataManager.instance.nowPlayerData.haveItems.Add(id, new HaveItemInfo(place, count, index));
     }

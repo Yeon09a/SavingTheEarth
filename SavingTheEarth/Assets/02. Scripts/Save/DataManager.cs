@@ -58,5 +58,6 @@ public class DataManager : MonoBehaviour
     public void PlayNewData() // nowPlayerData 세팅
     {
         nowPlayerData = new PlayerData(0, "잠수함", 2, 540, "오전  ", new Dictionary<int, HaveItemInfo>(), 0);
+        nowPlayerData.haveItems.Add(6, new HaveItemInfo(3, 6, 0));
     }
 }

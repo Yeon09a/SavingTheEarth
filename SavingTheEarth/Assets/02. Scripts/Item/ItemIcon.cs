@@ -19,7 +19,6 @@ public class ItemIcon : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     {
         canvasTr = GameObject.FindWithTag("Canvas").transform;
         itemInfoTr = canvasTr.GetChild(canvasTr.childCount - 1).transform;
-        GetComponent<Image>().sprite = itemInfo.image;
     }
 
     private void Update()
@@ -39,6 +38,11 @@ public class ItemIcon : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
                 isOpened = false; // 타이머가 끝났으므로 false
             }
         }
+    }
+
+    public void SetItemImage()
+    {
+        GetComponent<Image>().sprite = itemInfo.image;
     }
 
     public void OnPointerEnter(PointerEventData eventData)
