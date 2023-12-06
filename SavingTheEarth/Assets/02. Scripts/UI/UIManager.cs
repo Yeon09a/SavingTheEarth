@@ -237,6 +237,7 @@ public class UIManager : MonoBehaviour
         inventoryExitBtn.onClick.AddListener(CloseBox);
         trashcan.SetActive(false);
         inventoryPanel.SetActive(true);
+        inventoryPanel.transform.GetChild(0).gameObject.SetActive(false);
         box.SetActive(true);
     }
 
@@ -248,6 +249,7 @@ public class UIManager : MonoBehaviour
         inventoryExitBtn.onClick.RemoveAllListeners();
         inventoryExitBtn.onClick.AddListener(SetInventory);
         trashcan.SetActive(false);
+        inventoryPanel.transform.GetChild(0).gameObject.SetActive(true);
         inventoryPanel.SetActive(false);
         box.SetActive(false);
     }

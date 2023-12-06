@@ -102,7 +102,7 @@ public class PlayerFarm : MonoBehaviour
                     {
                         count--;
                         SetSeedCount(count);
-                        invenMng.UseItem(6);
+                        invenMng.UseItem(6, 1);
                         scanObject.GetComponent<Field>().fieldInfo = new Vector3(fieldNum, curState, 1);
                         SetField(fieldNum, curState, 1);
                     }

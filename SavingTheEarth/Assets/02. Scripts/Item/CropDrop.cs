@@ -7,10 +7,12 @@ public class CropDrop : MonoBehaviour, IDropHandler
 {
     private Transform itemPanelTr; // 아이템 슬롯 transform
     private int cropId = 6;
+    private int num;
 
     void Start()
     {
         itemPanelTr = transform.GetChild(0); // 아이콘이 들어갈 부모 
+        num = GetComponent<Slot>().num;
     }
 
     public void OnDrop(PointerEventData eventData) // 드롭할 때
@@ -21,6 +23,9 @@ public class CropDrop : MonoBehaviour, IDropHandler
 
             if (itemPanelTr.childCount == 0 && (iconId == cropId)) // 아이콘이 들어갈 부모가 비어있을 경우(빈 슬롯일 경우) && 슬롯의 타입이 아이템 창이거나 슬롯의 타입과 아이콘의 타입이 같을 경우
             {
+                DataManager.instance.nowPlayerData.haveItems[iconId].place = 3;
+                DataManager.instance.nowPlayerData.haveItems[iconId].slotNum = num;
+                InventoryManager.checkBItem[num] = true;
                 Drag.draggingIcon.transform.SetParent(itemPanelTr);
                 Drag.draggingIcon.GetComponent<Drag>().oriParentTr = itemPanelTr;
             }

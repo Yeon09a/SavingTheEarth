@@ -15,12 +15,16 @@ public class Drag : MonoBehaviour, IPointerDownHandler, IDragHandler, IBeginDrag
     public static GameObject draggingIcon = null; // 드래그 하고 있는 아이콘
     
     public static bool inDrag = false; // 드래그 하고 있는지
+
+    private RectTransform rectTf;
     
     // Start is called before the first frame update
     void Start()
     {
+        
         canvasTr = GameObject.FindWithTag("Canvas").transform;
         canvasGroup = GetComponent<CanvasGroup>();
+        rectTf = GetComponent<RectTransform>();
         oriParentTr = this.transform.parent;
     }
 
@@ -43,9 +47,13 @@ public class Drag : MonoBehaviour, IPointerDownHandler, IDragHandler, IBeginDrag
 
     public void OnDrag(PointerEventData eventData) // 드래그 중
     {
+        
         if (inDrag) // 드래그 하고있을 때
         {
-            this.transform.position = Input.mousePosition;
+            Vector3 vec = Camera.main.WorldToScreenPoint(rectTf.position);
+            vec.x += eventData.delta.x;
+            vec.y += eventData.delta.y;
+            rectTf.position = Camera.main.ScreenToWorldPoint(vec);
         }
     }
 

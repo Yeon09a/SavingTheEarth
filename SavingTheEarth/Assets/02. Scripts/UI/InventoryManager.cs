@@ -26,10 +26,10 @@ public class InventoryManager : MonoBehaviour
     public GameObject[] pItemSlots; // 중요 물품 슬롯 배열
     public GameObject[] bItemSlots; // 상자 슬롯 배열
 
-    private bool[] checkItemList; // 아이템 창 슬롯이 비어있는지 체크
-    private bool[] checkItem; // 소지품 슬롯이 비어있는지 체크
-    private bool[] checkPItem; // 중요 물품 슬롯이 비어있는지 체크
-    private bool[] checkBItem; // 상자 슬롯 체크
+    public static bool[] checkItemList; // 아이템 창 슬롯이 비어있는지 체크
+    public static bool[] checkItem; // 소지품 슬롯이 비어있는지 체크
+    public static bool[] checkPItem; // 중요 물품 슬롯이 비어있는지 체크
+    public static bool[] checkBItem; // 상자 슬롯 체크
 
     public GameObject itemIcon; // 아이템 아이콘 프리팹
 
@@ -258,7 +258,9 @@ public class InventoryManager : MonoBehaviour
     {
         GameObject icon = Instantiate(itemIcon, slots[index].transform.position, Quaternion.identity);
         // icon 속성 설정(itemicon으로 이동)
-        icon.GetComponent<ItemIcon>().itemInfo = items.items[id];
+        ItemIcon iIcon = icon.GetComponent<ItemIcon>();
+        iIcon.itemInfo = items.items[id];
+        iIcon.SetItemImage();
         icon.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = count.ToString();
         icon.transform.SetParent(slots[index].transform.GetChild(0));
         icon.GetComponent<RectTransform>().localScale = new Vector3(1, 1, 1);
@@ -304,9 +306,9 @@ public class InventoryManager : MonoBehaviour
         }
     }
 
-    public void UseItem(int id) // 아이템 사용
+    public void UseItem(int id, int count) // 아이템 사용
     {
-        DataManager.instance.nowPlayerData.haveItems[id].count -= 1;
+        DataManager.instance.nowPlayerData.haveItems[id].count -= count;
         HaveItemInfo haveItemInfo = DataManager.instance.nowPlayerData.haveItems[id];
         int slotNum = haveItemInfo.slotNum;
         int ItemType = haveItemInfo.place;
@@ -315,15 +317,15 @@ public class InventoryManager : MonoBehaviour
         {
             if (ItemType == 0) // 해당 아이템이 아이템 창에 있는 경우
             {
-                DelItem(id, slotNum, itemListSlots);
+                DelItem(id, slotNum, itemListSlots, checkItemList);
             }
             else if (ItemType == 1) // 소지품 창에 있는 경우
             {
-                DelItem(id, slotNum, itemSlots);
+                DelItem(id, slotNum, itemSlots, checkItem);
             }
             else if (ItemType == 2) // 중요물품 창에 있는 경우
             {
-                DelItem(id, slotNum, pItemSlots);
+                DelItem(id, slotNum, pItemSlots, checkPItem);
             }
         }
         else
@@ -343,9 +345,10 @@ public class InventoryManager : MonoBehaviour
         }
     }
 
-    public void DelItem(int id, int slotNum, GameObject[] slots) // 아이템 삭제
+    public void DelItem(int id, int slotNum, GameObject[] slots, bool[] checkSlots) // 아이템 삭제
     {
         Destroy(slots[slotNum].transform.GetChild(0).GetChild(0).gameObject);
+        checkSlots[slotNum] = false;
         DataManager.instance.nowPlayerData.haveItems.Remove(id);
     }
 }

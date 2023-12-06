@@ -42,7 +42,7 @@ public class MiddleOctMonster : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        //StartAttack();
+       // StartAttack();
         uiMng = GameObject.FindWithTag("UIManager").GetComponent<UIManager>();
 
     }
@@ -53,10 +53,10 @@ public class MiddleOctMonster : MonoBehaviour
         {
             attackCount++;
 
-            if(attackCount < 2)
+            if(attackCount < 4)
             {
                 attackNum = Random.Range(1, 3);
-                //attackNum = 1;
+                //attackNum = 2;
                 if (attackNum == 1)
                 {
                     ShootBeam();
