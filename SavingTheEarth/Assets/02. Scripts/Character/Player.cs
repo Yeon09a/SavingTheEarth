@@ -150,7 +150,7 @@ public class Player : Character
 
                         SceneLoadingManager.LoadScene("SeaMap");
                     }
-                    else if (scanObject.name.Equals("GHDoor"))
+                    else if (scanObject.name.Equals("GHDoor") && (questManager.questId == 20 || questManager.questId >= 40))
                     {
                         transform.position = new Vector3(0.074f, 46.486f, 0);
                         playerFarm.enabled = true;
