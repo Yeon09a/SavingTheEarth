@@ -46,7 +46,7 @@ public class PoisonBubble : MonoBehaviour
 
         yield return new WaitForSeconds(5.0f);
 
-        transform.localPosition = new Vector3(-0.2599945f, 0.95f, 0);
+        transform.position = new Vector3(161.5526f, -1.1276f, 0);
         isMove = false;
 
         this.gameObject.SetActive(false);
