@@ -213,9 +213,19 @@ public class InventoryManager : MonoBehaviour
         return -1;
     }
 
-    private bool PutNewItem(int id, int count) // 새로 얻은 아이템 획득
+    private bool PutNewItem(int id, int count, int wantPlace) // 새로 얻은 아이템 획득
     {
-        int lIndex = CheckItemList();
+        int lIndex;
+
+        if (wantPlace == 0)
+        {
+            lIndex = CheckItemList();
+        } else
+        {
+            lIndex = -1;
+        }
+        
+        
 
         if (lIndex == -1) // 아이템 창에 빈 슬롯이 없는 경우
         {
@@ -278,16 +288,16 @@ public class InventoryManager : MonoBehaviour
 
 
 
-    public bool PutItem(int id, int count) // 아이템 획득
+    public bool PutItem(int id, int count, int wantPlace) // 아이템 획득
     {
         int place = CheckHaveItem(id);
         if (place == -1) // 새로 얻은 경우
         {
-            return PutNewItem(id, count);
+            return PutNewItem(id, count, wantPlace);
         }
         else if (place == 0) // 해당 아이템이 아이템 창에 있는 경우
         {
-            PutHaveItem(id, itemListSlots, count);
+            PutHaveItem(id, itemListSlots, wantPlace);
             return true;
         }
         else if (place == 1) // 소지품 창에 있는 경우

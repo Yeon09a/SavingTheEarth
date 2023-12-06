@@ -133,6 +133,7 @@ MonoBehaviour:
   target: {fileID: 1527843477419019561}
   beam: {fileID: 4553524278278627283}
   mOctMon: {fileID: 0}
+  speed: 3
 --- !u!1 &4553524278278627283
 GameObject:
   m_ObjectHideFlags: 0
@@ -144,9 +145,10 @@ GameObject:
   - component: {fileID: 1665219201369310973}
   - component: {fileID: 5912674323669078095}
   - component: {fileID: 8929437298315308460}
+  - component: {fileID: 3387489440829386522}
   m_Layer: 0
   m_Name: Square
-  m_TagString: Untagged
+  m_TagString: MonsterAttack
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -234,3 +236,17 @@ CircleCollider2D:
   m_Offset: {x: -0.53266233, y: -3.99}
   serializedVersion: 2
   m_Radius: 1.9668545
+--- !u!114 &3387489440829386522
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4553524278278627283}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eeb65ec07f3188a41a4139aa9d81fe95, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  id: 0
+  num: 0

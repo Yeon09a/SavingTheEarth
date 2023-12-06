@@ -12,9 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f0da7c588ddfce54ab9a067aaf27bc69, type: 3}
   m_Name: PSeed
   m_EditorClassIdentifier: 
-  itName: "\uCE68\uB0AD"
+  itName: "\uAC10\uC790 \uC528\uC557"
   id: 8
-  info: "\uC7A0\uC744 \uC798 \uC218 \uC788\uB294 \uCE68\uB0AD\\n\uC9C0\uAE08\uAE4C\uC9C0\uC758
-    \uC5EC\uC815\uC744 \uAE30\uB85D\uD560 \uC218 \uC788\uB2E4."
-  image: {fileID: 0}
+  info: "\uC7A0\uC218\uD568\uC758 \uC628\uC2E4\uC5D0\uC11C \uC7AC\uBC30\uD560 \uC218
+    \uC788\uB294\n\uAC10\uC790 \uC528\uC557"
+  image: {fileID: 21300000, guid: 37a3fa4fcfbf32c4cbad962ffeaeb668, type: 3}
   type: 1
+  price: 0

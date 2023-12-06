@@ -18,6 +18,7 @@ TagManager:
   - Weapon
   - MapControl
   - UIManager
+  - MonsterAttack
   layers:
   - Default
   - TransparentFX

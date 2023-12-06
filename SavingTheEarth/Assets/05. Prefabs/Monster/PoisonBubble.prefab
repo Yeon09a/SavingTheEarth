@@ -12,9 +12,10 @@ GameObject:
   - component: {fileID: 3756510504002698677}
   - component: {fileID: 8178374514863799752}
   - component: {fileID: 3569019431782300262}
+  - component: {fileID: -877855011315560395}
   m_Layer: 0
   m_Name: PoisonBubble
-  m_TagString: Untagged
+  m_TagString: MonsterAttack
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -117,3 +118,17 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.9014111
+--- !u!114 &-877855011315560395
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6766942338519586370}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eeb65ec07f3188a41a4139aa9d81fe95, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  id: 0
+  num: 0

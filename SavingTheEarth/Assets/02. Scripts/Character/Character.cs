@@ -11,6 +11,7 @@ public abstract class Character : MonoBehaviour
     [SerializeField]
     public float speed;
     public float hp;
+    public float fullHp;
     protected Vector2 direction;
     protected Animator myAnimator;
     protected Rigidbody2D myRigidbody;

@@ -61,4 +61,15 @@ public class PoisonBubble : MonoBehaviour
     {
         Resources.UnloadUnusedAssets();
     }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Player"))
+        {
+            transform.position = new Vector3(161.5526f, -1.1276f, 0);
+            isMove = false;
+
+            this.gameObject.SetActive(false);
+        }
+    }
 }

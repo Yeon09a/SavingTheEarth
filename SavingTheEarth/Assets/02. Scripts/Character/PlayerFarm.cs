@@ -58,7 +58,7 @@ public class PlayerFarm : MonoBehaviour
                     }
                     else
                     {
-                        bool isNotFull = invenMng.PutItem(cropState == 3 ? 6 : 7, 1);
+                        bool isNotFull = invenMng.PutItem(cropState == 3 ? 6 : 7, 1, 0);
 
                         if (!isNotFull)
                         {

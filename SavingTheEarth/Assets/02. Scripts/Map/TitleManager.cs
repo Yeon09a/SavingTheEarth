@@ -55,6 +55,14 @@ public class TitleManager : MonoBehaviour
             GameManager.instance.preMap = MapName.BaseMap;
 
             SceneLoadingManager.LoadScene("SeaMap");
+        } else if (Input.GetKeyDown(KeyCode.F7))
+        {
+            DataManager.instance.PlayNewData();
+            DataManager.instance.nowPlayerData.playerName = "rescue";
+            GameManager.instance.curMap = MapName.SeaMap;
+            GameManager.instance.preMap = MapName.Test;
+
+            SceneLoadingManager.LoadScene("SeaMap");
         }
 
         if (Input.GetKeyDown(KeyCode.E))

@@ -113,13 +113,13 @@ public class QuestManager : MonoBehaviour
                 {
                     questObject[3].SetActive(false);
                     questObject[4].SetActive(true);
-                    inventoryManager.PutItem(1, 1);// putItem() 호출
+                    inventoryManager.PutItem(1, 1, 2);// putItem() 호출
                 }
                 if (questActionIndex == 4)
                 {
                     questObject[4].SetActive(false);
                     questObject[5].SetActive(true);
-                    inventoryManager.PutItem(2, 1);// putItem() 호출
+                    inventoryManager.PutItem(2, 1, 2);// putItem() 호출
                 }
                 if (questActionIndex == 5)
                 {
