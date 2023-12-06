@@ -249,6 +249,10 @@ public class Player : Character
             speed = 5;
         else
             speed = 3;
+
+        // 대화중 이동 제어
+        if (dialogManager.isTalk)
+            speed = 0;
     }
 
     // 마우스 상호작용 추가하기
