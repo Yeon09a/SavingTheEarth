@@ -22,7 +22,6 @@ public class QuestManager : MonoBehaviour
         questList = new Dictionary<int, QuestData>(); // 초기화
 
         GenerateData();
-        questObject[6].SetActive(true);
     }
 
     void GenerateData() // 퀘스트 데이터 생성
@@ -42,6 +41,11 @@ public class QuestManager : MonoBehaviour
 
     public string CheckQuest(int id)
     {
+        if (questId == 10)
+        {
+            questObject[6].SetActive(true);
+        }
+
         if (id == questList[questId].objId[questActionIndex])
             questActionIndex++; // 퀘스트 액션 인덱스 증가
 
