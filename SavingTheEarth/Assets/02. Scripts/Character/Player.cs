@@ -43,6 +43,7 @@ public class Player : Character
     public BoxCollider2D moveCollider;
 
     public DialogManager dialogManager;
+    public QuestManager questManager;
 
 
     protected override void Start()
@@ -142,7 +143,7 @@ public class Player : Character
 
                 if (scanObject.CompareTag("Door"))
                 {
-                    if (scanObject.name.Equals("OutDoor"))
+                    if (scanObject.name.Equals("OutDoor") && questManager.questId >= 50)
                     {
                         GameManager.instance.curMap = MapName.SeaMap;
                         GameManager.instance.preMap = MapName.BaseMap;

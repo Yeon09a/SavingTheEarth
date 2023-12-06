@@ -13993,6 +13993,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1628104263}
     - target: {fileID: 433309964014529842, guid: 8b008e418a60c0a4d961eb66a6f17409, type: 3}
+      propertyPath: questManager
+      value: 
+      objectReference: {fileID: 302879425}
+    - target: {fileID: 433309964014529842, guid: 8b008e418a60c0a4d961eb66a6f17409, type: 3}
       propertyPath: dialogManager
       value: 
       objectReference: {fileID: 62891987}
