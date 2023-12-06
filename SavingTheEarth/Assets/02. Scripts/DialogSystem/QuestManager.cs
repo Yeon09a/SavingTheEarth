@@ -22,7 +22,6 @@ public class QuestManager : MonoBehaviour
         questList = new Dictionary<int, QuestData>(); // 초기화
 
         GenerateData();
-        questObject[6].SetActive(true);
     }
 
     void GenerateData() // 퀘스트 데이터 생성
@@ -42,6 +41,11 @@ public class QuestManager : MonoBehaviour
 
     public string CheckQuest(int id)
     {
+        if (questId == 10)
+        {
+            questObject[6].SetActive(true);
+        }
+
         if (id == questList[questId].objId[questActionIndex])
             questActionIndex++; // 퀘스트 액션 인덱스 증가
 
@@ -82,7 +86,12 @@ public class QuestManager : MonoBehaviour
                 break;
             case 20:
                 if (questActionIndex == 1)
-                    questObject[0].SetActive(false); // 칠판 위에 느낌표 없애기
+                {
+                    questObject[0].SetActive(false); // 칠판 위에 느낌표 지움
+                    questObject[7].SetActive(true); // 온실 느낌표 띄우기
+                }
+                if (questActionIndex == 2)
+                    questObject[7].SetActive(false); // 온실 느낌표 지움
                 break;
             case 30:
                 if (questActionIndex == 1)
@@ -120,4 +129,3 @@ public class QuestManager : MonoBehaviour
         }
     }
 }
-

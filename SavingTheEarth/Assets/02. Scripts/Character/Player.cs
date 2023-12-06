@@ -43,6 +43,7 @@ public class Player : Character
     public BoxCollider2D moveCollider;
 
     public DialogManager dialogManager;
+    public QuestManager questManager;
 
 
     protected override void Start()
@@ -142,14 +143,14 @@ public class Player : Character
 
                 if (scanObject.CompareTag("Door"))
                 {
-                    if (scanObject.name.Equals("OutDoor"))
+                    if (scanObject.name.Equals("OutDoor") && questManager.questId >= 50)
                     {
                         GameManager.instance.curMap = MapName.SeaMap;
                         GameManager.instance.preMap = MapName.BaseMap;
 
                         SceneLoadingManager.LoadScene("SeaMap");
                     }
-                    else if (scanObject.name.Equals("GHDoor"))
+                    else if (scanObject.name.Equals("GHDoor") && (questManager.questId == 20 || questManager.questId >= 40))
                     {
                         transform.position = new Vector3(0.074f, 46.486f, 0);
                         playerFarm.enabled = true;
@@ -248,6 +249,10 @@ public class Player : Character
             speed = 5;
         else
             speed = 3;
+
+        // 대화중 이동 제어
+        if (dialogManager.isTalk)
+            speed = 0;
     }
 
     // 마우스 상호작용 추가하기
