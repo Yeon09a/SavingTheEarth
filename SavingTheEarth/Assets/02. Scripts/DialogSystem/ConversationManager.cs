@@ -35,11 +35,16 @@ public class ConversationManager : MonoBehaviour
         // Hoe: 14000 Water: 15000 Basket: 16000
         // /뒤에 숫자 : 초상화 배정 번호
 
-        // 시작 대사(임시)
+        // BaseMap 시작 대사
         dialogData.Add(50000, new string[] {
             "교수님과 통신 연결이 끊긴 지 벌써 일주일 째...\n\n해저 nnnnkm 연구용 잠수함에 혼자 남겨졌다/2",
             "세상이 망해도 하루는 어김없이 시작되는구나\n\n오늘도 일하러 가보실까?/0",
             "일단 조종실로 가서 조종대부터 체크하자/0"
+        });
+        // SeaMap 시작 대사
+        dialogData.Add(51000, new string[] {
+            "여기서부터는 미니 잠수함으로 갈 수 없을 것 같아/2",
+            "일단 앞으로 계속 가보자/2"
         });
 
         // 기본 대사

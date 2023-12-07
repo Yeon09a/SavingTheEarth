@@ -22,7 +22,15 @@ public class BaseMap : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (Input.GetKeyDown(KeyCode.F6))
+        {
+            DataManager.instance.PlayNewData();
+            DataManager.instance.nowPlayerData.playerName = "rescue";
+            GameManager.instance.curMap = MapName.SeaMap;
+            GameManager.instance.preMap = MapName.BaseMap;
+
+            SceneLoadingManager.LoadScene("SeaMap");
+        }
     }
 
     private void ActivateFace()
