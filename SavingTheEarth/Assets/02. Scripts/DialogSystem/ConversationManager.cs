@@ -32,6 +32,7 @@ public class ConversationManager : MonoBehaviour
         // 오브젝트id => 조종대:1000 칠판: 2000 온실 문: 3000 조종실 책상: 4000 내방 선반: 5000
         // 교수님방 책상 위 사진: 6000 출구: 7000 내방 침대: 8000 교수님 선반: 9000
         // 플레이어 책상: 10000 교수님방 책상: 11000 교수님방 침대: 12000 온실 박스: 13000
+        // Hoe: 14000 Water: 15000 Basket: 16000
         // /뒤에 숫자 : 초상화 배정 번호
 
         // 시작 대사(임시)
@@ -59,6 +60,9 @@ public class ConversationManager : MonoBehaviour
         });
         dialogData.Add(6000, new string[] {
             "웬 사진들이 이렇게 많아?/3"
+        });
+        dialogData.Add(7000, new string[] {
+            "지금은 아직 나갈 때가 아니야/1"
         });
         dialogData.Add(8000, new string[]
         {
