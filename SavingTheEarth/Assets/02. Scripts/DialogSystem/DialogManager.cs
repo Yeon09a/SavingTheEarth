@@ -53,6 +53,10 @@ public class DialogManager : MonoBehaviour
             {
                 Conversation(50000, false);
             }
+            else if (scanObject.name.Equals("Start_sea"))
+            {
+                Conversation(51000, false);
+            }
             else
             {
                 ObjectData objData = scanObject.GetComponent<ObjectData>();
@@ -110,6 +114,10 @@ public class DialogManager : MonoBehaviour
             if (scanObject.name.Equals("Start"))
             {
                 Conversation(50000, false);
+            }
+            else if (scanObject.name.Equals("Start_sea"))
+            {
+                Conversation(51000, false);
             }
             else
             {

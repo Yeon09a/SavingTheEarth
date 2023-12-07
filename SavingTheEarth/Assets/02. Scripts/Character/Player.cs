@@ -91,6 +91,12 @@ public class Player : Character
             transform.position = new Vector3(-0.02f, -3.16f, 0);
             GetComponent<CapsuleCollider2D>().isTrigger = false;
 
+            scanObject = GameObject.Find("Start_sea"); // SeaMap 시작 대사
+            Debug.Log(scanObject.name);
+            dialogManager.SenceObject(scanObject);
+            dialogManager.Talk();
+
+            questManager.questId = 60; // questId 갱신 방지
         }
         else if (GameManager.instance.preMap == MapName.SeaMap)
         {
