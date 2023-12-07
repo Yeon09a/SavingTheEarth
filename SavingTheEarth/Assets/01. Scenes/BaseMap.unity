@@ -2256,6 +2256,7 @@ GameObject:
   - component: {fileID: 4051234546660590614}
   - component: {fileID: 4051234546660590615}
   - component: {fileID: 4051234546660590612}
+  - component: {fileID: 4051234546660590616}
   m_Layer: 6
   m_Name: Hoe
   m_TagString: FarmTool
@@ -2356,6 +2357,20 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &4051234546660590616
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4051234546660590609}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3e4e7429f638e3f41b1a38f13435fcc9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  id: 14000
+  isNPC: 0
 --- !u!4 &4051234546688780516
 Transform:
   m_ObjectHideFlags: 0
@@ -2804,6 +2819,7 @@ GameObject:
   - component: {fileID: 4051234546950970384}
   - component: {fileID: 4051234546950970385}
   - component: {fileID: 4051234546950970390}
+  - component: {fileID: 4051234546950970391}
   m_Layer: 6
   m_Name: Basket
   m_TagString: FarmTool
@@ -2837,6 +2853,20 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 32, y: 32}
   m_EdgeRadius: 0
+--- !u!114 &4051234546950970391
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4051234546950970387}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3e4e7429f638e3f41b1a38f13435fcc9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  id: 16000
+  isNPC: 0
 --- !u!1 &4051234547008059849
 GameObject:
   m_ObjectHideFlags: 0
@@ -2848,6 +2878,7 @@ GameObject:
   - component: {fileID: 4051234547008059854}
   - component: {fileID: 4051234547008059855}
   - component: {fileID: 4051234547008059852}
+  - component: {fileID: 4051234547008059856}
   m_Layer: 6
   m_Name: Water
   m_TagString: FarmTool
@@ -2948,6 +2979,20 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &4051234547008059856
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4051234547008059849}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3e4e7429f638e3f41b1a38f13435fcc9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  id: 15000
+  isNPC: 0
 --- !u!1001 &4051234547024728925
 PrefabInstance:
   m_ObjectHideFlags: 0
