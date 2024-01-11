@@ -21,19 +21,19 @@ public class HaveItemInfo
 
 public class InventoryManager : MonoBehaviour
 {
-    public GameObject[] itemListSlots; // 하단 아이템 창 슬롯 배열
-    public GameObject[] itemSlots; // 소지품 슬롯 배열
-    public GameObject[] pItemSlots; // 중요 물품 슬롯 배열
+    public GameObject[] itemListSlots; // 화면 하단의 퀵슬롯(아이템 창) 슬롯 배열
+    public GameObject[] itemSlots; // 인벤토리의 소지품 슬롯 배열
+    public GameObject[] pItemSlots; // 인벤토리의 중요 물품 슬롯 배열
     public GameObject[] bItemSlots; // 상자 슬롯 배열
 
-    public static bool[] checkItemList; // 아이템 창 슬롯이 비어있는지 체크
-    public static bool[] checkItem; // 소지품 슬롯이 비어있는지 체크
-    public static bool[] checkPItem; // 중요 물품 슬롯이 비어있는지 체크
-    public static bool[] checkBItem; // 상자 슬롯 체크
+    public static bool[] checkItemList; // 퀵슬롯(아이템 창) 슬롯이 비어있는지 체크하기 위한 배열
+    public static bool[] checkItem; // 인벤토리의 소지품 슬롯이 비어있는지 체크하기 위한 배열
+    public static bool[] checkPItem; // 인벤토리의 중요 물품 슬롯이 비어있는지 체크하기 위한 배열
+    public static bool[] checkBItem; // 상자 슬롯이 비어있는지 체크하기 위한 배열
 
     public GameObject itemIcon; // 아이템 아이콘 프리팹
 
-    public ItemDic items; // 아이템 종류 에셋
+    public ItemDic items; // 모든 아이템 데이터를 가지고 있는 ScriptableObject(아이템 id에 따른 아이템 정보가 배열로 존재)
 
     public SlotClick[] slots; // 슬롯 배열
     private SlotClick selectedSlot = null; // 선택된 슬롯
@@ -115,21 +115,22 @@ public class InventoryManager : MonoBehaviour
         selectedSlot = null;
 
         // 소지한 아이템 불러오기
-        foreach (KeyValuePair<int, HaveItemInfo> item in DataManager.instance.nowPlayerData.haveItems)
+        foreach (KeyValuePair<int, HaveItemInfo> item in DataManager.instance.nowPlayerData.haveItems) // 소지한 아이템 딕셔너리 가져오기
         {
-            if (item.Value.place == 0) // 아이템 창
+            if (item.Value.place == 0) // 소지한 아이템의 위치가 퀵슬롯인 경우
             {
+                // 슬롯에 넣을 아이템 아이콘 생성
                 LoadItemIcon(itemListSlots, checkItemList, item.Key, item.Value.slotNum, item.Value.count);
             }
-            else if (item.Value.place == 1) // 소지품
+            else if (item.Value.place == 1) // 소지한 아이템의 위치가 인벤토리 소지품인 경우
             {
                 LoadItemIcon(itemSlots, checkItem, item.Key, item.Value.slotNum, item.Value.count);
             }
-            else if (item.Value.place == 2) // 중요물품
+            else if (item.Value.place == 2) // 소지한 아이템의 위치가 인벤토리 중요물품인 경우
             {
                 LoadItemIcon(pItemSlots, checkPItem, item.Key, item.Value.slotNum, item.Value.count);
             }
-            else // 상자
+            else // 소지한 아이템의 위치가 상자인 경우
             {
                 LoadItemIcon(bItemSlots, checkBItem, item.Key, item.Value.slotNum, item.Value.count);
             }
@@ -138,15 +139,15 @@ public class InventoryManager : MonoBehaviour
 
     private void LoadItemIcon(GameObject[] slots, bool[] checkSlots, int id, int index, int count) // 아이템 아이콘 불러오기
     {
-        GameObject icon = Instantiate(itemIcon, slots[index].transform.position, Quaternion.identity);
+        GameObject icon = Instantiate(itemIcon, slots[index].transform.position, Quaternion.identity); // 아이콘 생성
         // icon 속성 설정(itemicon으로 이동)
-        icon.GetComponent<ItemIcon>().itemInfo = items.items[id];
-        icon.GetComponent<ItemIcon>().SetItemImage();
-        icon.transform.SetParent(slots[index].transform.GetChild(0));
-        icon.GetComponent<RectTransform>().localScale = new Vector3(1, 1, 1);
-        checkSlots[index] = true;
+        icon.GetComponent<ItemIcon>().itemInfo = items.items[id]; // 아이템 정보 설정
+        icon.GetComponent<ItemIcon>().SetItemImage(); // 아이템 이미지 설정
+        icon.transform.SetParent(slots[index].transform.GetChild(0)); // 아이템을 슬롯에 넣음(아이템 아이콘의 부모 오브젝트를 슬롯으로 설정함)
+        icon.GetComponent<RectTransform>().localScale = new Vector3(1, 1, 1); // 아이템 아이콘 크기 설정
+        checkSlots[index] = true; // 해당 슬롯에 아이템이 있다고 표시
 
-        icon.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = count.ToString();
+        icon.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = count.ToString(); // 아이템 아이콘에 아이템 개수 표시
     }
 
     private int CheckHaveItem(int id) // 아이템을 현재 가지고 있는지 확인
@@ -161,11 +162,11 @@ public class InventoryManager : MonoBehaviour
         }
     }
 
-    private int CheckItemList() // 아이템 창의 빈 슬롯 찾기
+    private int CheckItemSlot(bool[] checkSlots) // 빈 슬롯 찾기
     {
-        for (int i = 0; i < checkItemList.Length; i++)
+        for (int i = 0; i < checkSlots.Length; i++)
         {
-            if (checkItemList[i] == false) // 빈 슬롯 발견 시
+            if (checkSlots[i] == false) // 빈 슬롯 발견 시
             {
                 return i;
             }
@@ -174,94 +175,64 @@ public class InventoryManager : MonoBehaviour
         return -1;
     }
 
-    private int CheckItemSlots() // 소지품 창의 빈 슬롯 찾기
-    {
-        for (int i = 0; i < checkItem.Length; i++)
-        {
-            if (checkItem[i] == false) // 빈 슬롯 발견 시
-            {
-                return i;
-            }
-        }
-
-        return -1;
-    }
-
-    private int CheckPItemSlots() // 중요물품 창의 빈 슬롯 찾기
-    {
-        for (int i = 0; i < checkPItem.Length; i++)
-        {
-            if (checkPItem[i] == false) // 빈 슬롯 발견 시
-            {
-                return i;
-            }
-        }
-
-        return -1;
-    }
-
-    private int CheckBItemSlots() // 상자의 빈 슬롯 찾기
-    {
-        for (int i = 0; i < checkBItem.Length; i++)
-        {
-            if (checkBItem[i] == false) // 빈 슬롯 발견 시
-            {
-                return i;
-            }
-        }
-
-        return -1;
-    }
 
     private bool PutNewItem(int id, int count, int wantPlace) // 새로 얻은 아이템 획득
     {
-        int lIndex;
-
-        if (wantPlace == 0)
+        if(wantPlace == 0)
         {
-            lIndex = CheckItemList();
+            int slotNum = CheckItemSlot(checkItemList);
+            if(slotNum != -1)
+            {
+                CreateItemIcon(itemListSlots, checkItemList, id, slotNum, 0, count);
+                return true;
+            }
+        }
+
+        int type = items.items[id].type;
+        
+        if(wantPlace == 1 || type == 1)
+        {
+            int slotNum = CheckItemSlot(checkItem);
+            if (slotNum != -1) // 소지품 창에 빈 슬롯이 있는 경우
+            {
+                CreateItemIcon(itemSlots, checkItem, id, slotNum, 1, count);
+                return true;
+            }
+            else // 빈 슬롯이 없는 경우
+            {
+                return false;
+            }
+        }
+        else if(wantPlace == 2 || type == 2)
+        {
+            int slotNum = CheckItemSlot(checkPItem);
+            if (slotNum != -1) // 중요 물품 창에 빈 슬롯이 있는 경우
+            {
+                CreateItemIcon(pItemSlots, checkPItem, id, slotNum, 2, count);
+                return true;
+            }
+            else // 빈 슬롯이 없는 경우
+            {
+                return false;
+            }
+        } 
+        else if(wantPlace == 3 || type == 3)
+        {
+            int slotNum = CheckItemSlot(checkBItem);
+            if (slotNum != -1) // 중요 물품 창에 빈 슬롯이 있는 경우
+            {
+                CreateItemIcon(bItemSlots, checkBItem, id, slotNum, 3, count);
+                return true;
+            }
+            else // 빈 슬롯이 없는 경우
+            {
+                return false;
+            }
         } else
         {
-            lIndex = -1;
+            return false;
         }
         
-        
-
-        if (lIndex == -1) // 아이템 창에 빈 슬롯이 없는 경우
-        {
-            if (items.items[id].type == 1) // 아이템 종류가 소지품
-            {
-                int iIndex = CheckItemSlots();
-                if (iIndex != -1) // 소지품 창에 빈 슬롯이 있는 경우
-                {
-                    CreateItemIcon(itemSlots, checkItem, id, iIndex, 1, count);
-                    return true;
-                }
-                else // 빈 슬롯이 없는 경우
-                {
-                    return false;
-                }
-            }
-            else // 아이템 종류가 중요 물품
-            {
-                int pIndex = CheckPItemSlots();
-                if (pIndex != -1) // 중요 물품 창에 빈 슬롯이 있는 경우
-                {
-                    CreateItemIcon(pItemSlots, checkPItem, id, pIndex, 2, count);
-                    return true;
-                }
-                else // 빈 슬롯이 없는 경우
-                {
-                    return false;
-                }
-            }
-        }
-        else // 아이템 창에 빈 슬롯이 있는 경우
-        {
-            // 아이템 리스트에 아이템 넣음
-            CreateItemIcon(itemListSlots, checkItemList, id, lIndex, 0, count);
-            return true;
-        }
     }
 
     public void CreateItemIcon(GameObject[] slots, bool[] checkSlots, int id, int index, int place, int count) // 아이템 아이콘 생성
@@ -290,24 +261,24 @@ public class InventoryManager : MonoBehaviour
 
     public bool PutItem(int id, int count, int wantPlace) // 아이템 획득
     {
-        int place = CheckHaveItem(id);
+        int place = CheckHaveItem(id); // 얻은 아이템이 기존에 가지고 있는지 확인한다.
         if (place == -1) // 새로 얻은 경우
         {
-            return PutNewItem(id, count, wantPlace);
+            return PutNewItem(id, count, wantPlace); // 새로 인벤토리에 아이템을 추가한다.
         }
-        else if (place == 0) // 해당 아이템이 아이템 창에 있는 경우
+        else if (place == 0) // 해당 아이템이 아이템창(퀵슬롯)에 있는 경우
         {
-            PutHaveItem(id, itemListSlots, wantPlace);
+            PutHaveItem(id, itemListSlots, count); // 기존에 가지고 있는 아이템의 개수를 추가한다.
             return true;
         }
         else if (place == 1) // 소지품 창에 있는 경우
         {
-            PutHaveItem(id, itemSlots, count);
+            PutHaveItem(id, itemSlots, count); // 기존에 가지고 있는 아이템의 개수를 추가한다.
             return true;
         }
         else if (place == 2) // 중요물품 창에 있는 경우
         {
-            PutHaveItem(id, pItemSlots, count);
+            PutHaveItem(id, pItemSlots, count); // 기존에 가지고 있는 아이템의 개수를 추가한다.
             return true;
         }
         else
@@ -318,16 +289,16 @@ public class InventoryManager : MonoBehaviour
 
     public void UseItem(int id, int count) // 아이템 사용
     {
-        DataManager.instance.nowPlayerData.haveItems[id].count -= count;
-        HaveItemInfo haveItemInfo = DataManager.instance.nowPlayerData.haveItems[id];
-        int slotNum = haveItemInfo.slotNum;
-        int ItemType = haveItemInfo.place;
+        HaveItemInfo haveItemInfo = DataManager.instance.nowPlayerData.haveItems[id]; // 사용할 아이템의 소지 정보 가져오기
+        int slotNum = haveItemInfo.slotNum; // 아이템의 슬롯 번호 가져오기
+        int ItemType = haveItemInfo.place; // 아이템의 분류 위치 가져오기
+        int iCount = haveItemInfo.count;
 
-        if (haveItemInfo.count == 0)
+        if (iCount == count) // 아이템을 사용했을 때 개수가 0개가 남을 경우
         {
-            if (ItemType == 0) // 해당 아이템이 아이템 창에 있는 경우
+            if (ItemType == 0) // 해당 아이템이 퀵슬롯에 있는 경우
             {
-                DelItem(id, slotNum, itemListSlots, checkItemList);
+                DelItem(id, slotNum, itemListSlots, checkItemList); // 퀵슬롯에서 아이템 아이콘 제
             }
             else if (ItemType == 1) // 소지품 창에 있는 경우
             {
@@ -338,19 +309,21 @@ public class InventoryManager : MonoBehaviour
                 DelItem(id, slotNum, pItemSlots, checkPItem);
             }
         }
-        else
+        else if (iCount > count) // 아이템 사용 후 개수가 남았을 경우
         {
-            if (ItemType == 0) // 해당 아이템이 아이템 창에 있는 경우
+            haveItemInfo.count -= count;
+
+            if (ItemType == 0) // 해당 아이템이 퀵슬롯에 있는 경우
             {
-                itemListSlots[slotNum].transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = haveItemInfo.count.ToString();
+                itemListSlots[slotNum].transform.GetChild(0).GetChild(0).GetChild(1).GetComponent<TextMeshProUGUI>().text = haveItemInfo.count.ToString(); // 아이템 개수 UI 업데이트
             }
             else if (ItemType == 1) // 소지품 창에 있는 경우
             {
-                itemSlots[slotNum].transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = haveItemInfo.count.ToString();
+                itemSlots[slotNum].transform.GetChild(0).GetChild(0).GetChild(1).GetComponent<TextMeshProUGUI>().text = haveItemInfo.count.ToString();
             }
             else if (ItemType == 2) // 중요물품 창에 있는 경우
             {
-                pItemSlots[slotNum].transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = haveItemInfo.count.ToString();
+                pItemSlots[slotNum].transform.GetChild(0).GetChild(0).GetChild(1).GetComponent<TextMeshProUGUI>().text = haveItemInfo.count.ToString();
             }
         }
     }

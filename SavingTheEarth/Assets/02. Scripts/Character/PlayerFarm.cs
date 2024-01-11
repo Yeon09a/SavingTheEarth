@@ -96,13 +96,13 @@ public class PlayerFarm : MonoBehaviour
             case 3: // ¾¾¾Ñ ¹Ù±¸´Ï
                 if (curState != 0 && cropState == 0)
                 {
-                    int count = DataManager.instance.nowPlayerData.haveItems.ContainsKey(6) ? DataManager.instance.nowPlayerData.haveItems[6].count : 0;
+                    int count = DataManager.instance.nowPlayerData.haveItems.ContainsKey(8) ? DataManager.instance.nowPlayerData.haveItems[8].count : 0;
 
                     if (count > 0)
                     {
+                        invenMng.UseItem(8, 1);
                         count--;
                         SetSeedCount(count);
-                        invenMng.UseItem(6, 1);
                         scanObject.GetComponent<Field>().fieldInfo = new Vector3(fieldNum, curState, 1);
                         SetField(fieldNum, curState, 1);
                     }
