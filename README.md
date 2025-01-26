@@ -16,10 +16,13 @@
 ### 게임 플레이
 * 스토리 진행
   * 오브젝트와의 상호작용과 퀘스트로 스토리를 진행합니다.
+  <br/><img width="50%" src="https://github.com/user-attachments/assets/61bd27a9-524b-43a2-8417-1e22b81a26c9"/>
 * 몬스터와의 전투 시스템
   * 몬스터와의 전투를 통해 모험을 즐깁니다.
+   <br/><img width="50%" src="https://github.com/user-attachments/assets/f0d2c5ea-0157-433b-8578-89e9e9914811"/><img width="50%" src="[https://github.com/user-attachments/assets/b7a51178-8a9b-44df-b7c8-911a7d0d3da0](https://github.com/user-attachments/assets/7c9eeafb-0385-4706-8636-a906e81fcef7)"/>
 * 농사 시스템
   * 농사를 통해 힐링을 즐깁니다.
+  <br/><img width="50%" src="https://github.com/user-attachments/assets/e59fdddb-dca4-43e2-ae49-a1c02b05a3b4"/>
 ## 프로젝트 개요
 ### 개발 기간
 * 2023.04 - 2024.11 (약 8개월)
@@ -30,7 +33,7 @@
 * 타이틀 및 로딩, Player 씬, 상점 UI 제작 및 연결
 * 세이브 시스템 제작
   * Json을 활용한 세이브 파일 관리
-  * 직렬화가 불가능한 Dictionary를 List로 변환하여 Json 파일에 저장하도록 제
+  * 직렬화가 불가능한 Dictionary를 List로 변환하여 Json 파일에 저장하도록 제작
 * 씬 이동 및 로딩 시스템 제작
   * 비동기 씬 전환 사용
   * AsyncOperation를 사용한 로딩 진행 상황 표현
