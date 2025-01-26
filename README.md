@@ -19,7 +19,7 @@
   <br/><img width="50%" src="https://github.com/user-attachments/assets/61bd27a9-524b-43a2-8417-1e22b81a26c9"/>
 * 몬스터와의 전투 시스템
   * 몬스터와의 전투를 통해 모험을 즐깁니다.
-   <br/><img width="50%" src="https://github.com/user-attachments/assets/f0d2c5ea-0157-433b-8578-89e9e9914811"/><img width="50%" src="[https://github.com/user-attachments/assets/b7a51178-8a9b-44df-b7c8-911a7d0d3da0](https://github.com/user-attachments/assets/7c9eeafb-0385-4706-8636-a906e81fcef7)"/>
+   <br/><img width="50%" src="https://github.com/user-attachments/assets/f0d2c5ea-0157-433b-8578-89e9e9914811"/><img width="50%" src="https://github.com/user-attachments/assets/7c9eeafb-0385-4706-8636-a906e81fcef)"/>
 * 농사 시스템
   * 농사를 통해 힐링을 즐깁니다.
   <br/><img width="50%" src="https://github.com/user-attachments/assets/e59fdddb-dca4-43e2-ae49-a1c02b05a3b4"/>
