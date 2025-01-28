@@ -25,7 +25,7 @@
   <br/><img width="50%" src="https://github.com/user-attachments/assets/e59fdddb-dca4-43e2-ae49-a1c02b05a3b4"/>
 ## 프로젝트 개요
 ### 개발 기간
-* 2023.04 - 2024.11 (약 8개월)
+* 2023.04 - 2023.11 (약 8개월)
 ### 개발 환경
 * Unity 2021.3.5f1
 ### 수행업무
