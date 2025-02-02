@@ -24,6 +24,7 @@
   * 농사를 통해 힐링을 즐깁니다.
   <br/><img width="50%" src="https://github.com/user-attachments/assets/e59fdddb-dca4-43e2-ae49-a1c02b05a3b4"/>
 ## 프로젝트 개요
+🔗자세한 내용은 Notion에서 확인하실 수 있으십니다.    [<img src="https://img.shields.io/badge/Notion-000000?style=flat-round&logo=Notion&logoColor=white"/>](https://www.notion.so/SavingTheEarth-178b66b96b778005b8cbe9d33e903e73?pvs=4)
 ### 개발 기간
 * 2023.05 - 2023.11 (약 7개월)
 ### 개발 환경
